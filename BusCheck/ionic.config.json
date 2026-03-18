@@ -1,0 +1,7 @@
+{
+  "name": "BusCheck",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
