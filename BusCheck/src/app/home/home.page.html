@@ -1,20 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>BusConnect</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content class="ion-padding">
+  <div class="welcome-message">
+    <h1>BusConnect</h1>
+    <p>Sistema de Gerenciamento de Transporte Universitário</p>
   </div>
+
+  <ion-card class="passageiro-card">
+    <ion-card-header>
+      <ion-card-title>Sou Passageiro</ion-card-title>
+      <ion-card-subtitle>Confirme sua presença nas viagens e acompanhe seu transporte</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="block" color="secondary" routerLink="/login" [queryParams]="{ tipo: 'passageiro' }">
+        Entrar como Passageiro
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="motorista-card">
+    <ion-card-header>
+      <ion-card-title>Sou Motorista</ion-card-title>
+      <ion-card-subtitle>Gerencie passageiros e rotas das viagens</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="block" color="secondary" routerLink="/login" [queryParams]="{ tipo: 'motorista' }">
+        Entrar como Motorista
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title size="small">© 2026 BusConnect - Transporte Universitário Inteligente</ion-title>
+  </ion-toolbar>
+</ion-footer>
