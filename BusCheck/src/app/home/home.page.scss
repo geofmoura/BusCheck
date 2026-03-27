@@ -1,0 +1,98 @@
+:host {
+  // Fundo da página
+  --ion-background-color: #f5f5f5;
+  --ion-text-color: #000000;
+
+}
+// Ícone
+.header-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+// Título
+.floating-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  color: #333;
+}
+
+.floating-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+// Estilo para os cards
+ion-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 16px;
+}
+
+// Títulos dos cards
+ion-card-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  color: #333;
+
+}
+
+// Subtítulos dos cards
+ion-card-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+// Mensagem de boas-vindas
+.welcome-message p {
+    text-align: center;
+    font-size: 1rem;
+    color: #444;
+    margin: 20px 0;
+}
+
+.card-icon-enter {
+    display: block;        
+    margin: 15px auto 0;   
+    width: 40px;           
+    height: auto;
+}
+
+.cadastro-passageiro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 30px 0;     
+  text-align: center;
+}
+
+.cadastro-link {
+    color: rgb(56, 56, 255);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 0;                
+}
+
+ion-footer {
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.ion-hotbar {
+    --background: white;
+    --color: #444; 
+}
+
+.title-hotbar {
+    text-align: center;
+}
