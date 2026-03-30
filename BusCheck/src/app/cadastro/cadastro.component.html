@@ -1,0 +1,144 @@
+<ion-content class="ion-padding">
+  
+  <img 
+    src="../../assets/icon/voltar.png" 
+    class="back-icon"
+    (click)="goToHome()"
+  />
+
+  <div class="floating-header">
+    <img src="../../assets/icon/bus.png" class="header-icon" />
+    <h1 class="floating-title">BusCheck</h1>
+  </div>
+
+   <div class="welcome-message">
+    <p>Sistema de Gerenciamento de Transporte Universitário</p>
+  </div>
+
+  <div class="cadastro-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-subtitle>Preencha os dados para se cadastrar</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+
+          <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input 
+              type="text" 
+              formControlName="nome"
+              placeholder="Digite seu nome completo"
+              [clearInput]="true">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="cadastroForm.get('nome')?.invalid && cadastroForm.get('nome')?.touched">
+            <ion-text color="danger" *ngIf="cadastroForm.get('nome')?.errors?.['required']">
+              Nome é obrigatório
+            </ion-text>
+            <ion-text color="danger" *ngIf="cadastroForm.get('nome')?.errors?.['minlength']">
+              Nome deve ter pelo menos 3 caracteres
+            </ion-text>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input 
+              type="email" 
+              formControlName="email"
+              placeholder="seuemail@exemplo.com"
+              [clearInput]="true">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched">
+            <ion-text color="danger" *ngIf="cadastroForm.get('email')?.errors?.['required']">
+              Email é obrigatório
+            </ion-text>
+            <ion-text color="danger" *ngIf="cadastroForm.get('email')?.errors?.['email']">
+              Email inválido
+            </ion-text>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input 
+              type="tel" 
+              formControlName="telefone"
+              placeholder="(11) 99999-9999"
+              [clearInput]="true"
+              (ionInput)="formatarTelefone($event)">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="cadastroForm.get('telefone')?.invalid && cadastroForm.get('telefone')?.touched">
+            <ion-text color="danger" *ngIf="cadastroForm.get('telefone')?.errors?.['required']">
+              Telefone é obrigatório
+            </ion-text>
+            <ion-text color="danger" *ngIf="cadastroForm.get('telefone')?.errors?.['pattern']">
+              Telefone inválido (formato: (11) 99999-9999)
+            </ion-text>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input 
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="senha"
+              placeholder="Digite sua senha">
+            </ion-input>
+            <ion-button 
+              slot="end" 
+              fill="clear"
+              (click)="togglePassword()">
+              <ion-icon [name]="showPassword ? 'eye-off' : 'eye'"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <div class="error-message" *ngIf="cadastroForm.get('senha')?.invalid && cadastroForm.get('senha')?.touched">
+            <ion-text color="danger" *ngIf="cadastroForm.get('senha')?.errors?.['required']">
+              Senha é obrigatória
+            </ion-text>
+            <ion-text color="danger" *ngIf="cadastroForm.get('senha')?.errors?.['minlength']">
+              Senha deve ter no mínimo 6 caracteres
+            </ion-text>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input 
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              formControlName="confirmarSenha"
+              placeholder="Confirme sua senha">
+            </ion-input>
+            <ion-button 
+              slot="end" 
+              fill="clear"
+              (click)="toggleConfirmPassword()">
+              <ion-icon [name]="showConfirmPassword ? 'eye-off' : 'eye'"></ion-icon>
+            </ion-button>
+          </ion-item>
+          <div class="error-message" *ngIf="cadastroForm.errors?.['senhaNaoCoincide'] && cadastroForm.get('confirmarSenha')?.touched">
+            <ion-text color="danger">
+              As senhas não coincidem
+            </ion-text>
+          </div>
+
+          <ion-button 
+            type="submit"
+            expand="block" 
+            class="button-cadastrar"
+            [disabled]="!cadastroForm.valid">
+            Cadastrar
+          </ion-button>
+
+          <div class="login-link">
+            <ion-text>
+              <p>Já tem uma conta? 
+                <a (click)="goToHome()">Faça login</a>
+              </p>
+            </ion-text>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

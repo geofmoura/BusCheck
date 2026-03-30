@@ -1,0 +1,183 @@
+:host {
+  --ion-background-color: #f5f5f5;
+  --ion-text-color: #000000;
+}
+
+.back-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.floating-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.header-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.floating-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  color: #333;
+}
+
+.cadastro-container {
+  padding: 0 16px;
+  margin-top: 20px;
+
+  ion-card {
+    margin: 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: white;
+
+    .card-title {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    ion-card-subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+    }
+
+    ion-card-content {
+      padding-top: 20px;
+    }
+
+    ion-item {
+      margin-bottom: 8px;
+      --border-radius: 8px;
+      --highlight-height: 2px;
+      --background: transparent;
+      
+      ion-label {
+        font-weight: 500;
+      }
+      
+      ion-input {
+        --padding-start: 0;
+      }
+    }
+
+    .error-message {
+      margin: -8px 0 12px 16px;
+      font-size: 12px;
+      
+      ion-text {
+        display: block;
+        margin-top: 4px;
+      }
+    }
+
+    .button-cadastrar {
+      margin-top: 24px;
+      --border-radius: 8px;
+      --box-shadow: none;
+      height: 48px;
+      font-weight: bold;
+      --background: #3880ff;
+      --background-activated: #3171e0;
+      
+      &[disabled] {
+        --opacity: 0.5;
+      }
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      
+      p {
+        margin: 0;
+        color: #666;
+        font-size: 14px;
+      }
+      
+      a {
+        color: #3880ff;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+.welcome-message p {
+  text-align: center;
+  font-size: 1rem;
+  color: #444;
+  margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .cadastro-container {
+    padding: 0 12px;
+    
+    ion-card {
+      .card-title {
+        font-size: 20px;
+      }
+      
+      .button-cadastrar {
+        height: 44px;
+        font-size: 14px;
+      }
+    }
+  }
+  
+  .floating-title {
+    font-size: 1.5rem;
+  }
+  
+  .header-icon {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cadastro-container {
+    padding: 0 10px;
+    
+    ion-card {
+      .card-title {
+        font-size: 18px;
+      }
+      
+      ion-card-subtitle {
+        font-size: 12px;
+      }
+    }
+  }
+  
+  .floating-header {
+    margin-top: 50px;
+    margin-bottom: 15px;
+  }
+}
