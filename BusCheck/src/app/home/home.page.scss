@@ -1,10 +1,10 @@
 :host {
-  // Fundo da página
+
   --ion-background-color: #f5f5f5;
   --ion-text-color: #000000;
 
 }
-// Ícone
+
 .header-icon {
   width: 60px;
   height: 60px;
@@ -12,7 +12,6 @@
   margin-bottom: 10px;
 }
 
-// Título
 .floating-title {
   font-size: 1.8rem;
   font-weight: bold;
@@ -28,7 +27,7 @@
   justify-content: center;
   margin-top: 10px;
 }
-// Estilo para os cards
+
 ion-card {
   background: #ffffff;
   border-radius: 16px;
@@ -36,24 +35,26 @@ ion-card {
   margin: 16px;
 }
 
-// Títulos dos cards
 ion-card-title {
   font-size: 1.4rem;
   font-weight: bold;
   margin: 0;
   text-align: center;
-  color: #333;
+  --color: #333;
+  --text-transform: none;
 
 }
 
-// Subtítulos dos cards
+.button-entrar {
+  color: #ffffff;
+}
+
 ion-card-subtitle {
   color: #666;
   font-size: 0.9rem;
   text-align: center;
 }
 
-// Mensagem de boas-vindas
 .welcome-message p {
     text-align: center;
     font-size: 1rem;
@@ -95,4 +96,13 @@ ion-footer {
 
 .title-hotbar {
     text-align: center;
+}
+
+mat-form-field {
+  width: 99%;
+}
+
+.example-container {
+  display: flex;
+  margin-top: 20px;
 }
