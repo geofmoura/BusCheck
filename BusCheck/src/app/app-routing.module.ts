@@ -7,8 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+    path: 'viagens',
+    loadChildren: () => import('./viagens/viagens.module').then(m => m.ViagensModule)
   },
   {
     path: 'cadastro',
@@ -20,7 +20,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '**',        // ← wildcard para rotas não encontradas
+    path: '**',       
     redirectTo: 'home'
   }
 ];
