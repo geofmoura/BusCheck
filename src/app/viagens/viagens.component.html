@@ -11,14 +11,18 @@
         <ion-icon name="person-outline" slot="start"></ion-icon>
         <ion-label>Meu Perfil</ion-label>
       </ion-item>
-  <ion-item button>
-    <ion-icon name="bus-outline" slot="start"></ion-icon>
-    <ion-label>Ver Viagens</ion-label>
-  </ion-item>
-      <ion-item button>
+    <ion-item button routerLink="/cadastrarviagem" (click)="fecharMenu()">
+        <ion-icon name="bus-outline" slot="start"></ion-icon>
+        <ion-label>Ver Viagens Disponíveis</ion-label>
+    </ion-item>
+    <ion-item button>
+        <ion-icon name="moon-outline" slot="start"></ion-icon>
+        <ion-label>Modo Noturno</ion-label>
+    </ion-item>
+    <ion-item button>
         <ion-icon name="log-out-outline" slot="start"></ion-icon>
         <ion-label>Sair</ion-label>
-      </ion-item>
+    </ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>
@@ -29,7 +33,7 @@
     <ion-title class="toolbar-title">
       <div class="toolbar-content">
         <span class="toolbar-app-name">BusCheck</span>
-        <span class="toolbar-subtitle">Olá, Maria Silva Santos</span>
+        <span class="toolbar-subtitle">Olá, {{ passageiro?.nome_completo || 'Passageiro' }}</span>
       </div>
     </ion-title>
     <ion-buttons slot="end">
@@ -45,11 +49,11 @@
     <ion-card-content>
       <div class="perfil-item">
         <span class="perfil-label">Email</span>
-        <span class="perfil-valor">maria.silva@email.com</span>
+        <span class="perfil-valor">{{ passageiro?.email }}</span>
       </div>
       <div class="perfil-item">
         <span class="perfil-label">Telefone</span>
-        <span class="perfil-valor">(11) 98765-4321</span>
+        <span class="perfil-valor">{{ passageiro?.telefone }}</span>
       </div>
       <div class="perfil-item">
         <span class="perfil-label">Universidade</span>
