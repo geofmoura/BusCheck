@@ -13,7 +13,7 @@ ion-menu::part(container) {
 }
 
 .menu-toolbar {
-  --background: #1565C0;
+  --background: #3880ff;
   --color: white;
   box-shadow: none;
   border: none;
@@ -40,10 +40,10 @@ ion-menu ion-icon {
 }
 
 ion-toolbar.toolbar-viagens {
-  --background: #1565C0;
+  --background: #3880ff;
   --color: white;
   --min-height: 70px;
-  --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
 .toolbar-content {
