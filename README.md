@@ -9,24 +9,33 @@ Administrador
    - Deve poder editar informações de rotas existentes
    - Deve poder desativar/reativar rotas conforme necessário
 
-Aluno
+Passageiro
    - Deve poder criar uma conta de usuário com informações pessoais
    - Deve poder vincular-se a uma instituição de ensino (faculdade/universidade)
    - Deve poder visualizar todas as rotas cadastradas
    - Deve poder inscrever-se em uma rota de viagem disponível
    - Deve poder selecionar os dias da semana em que utilizará o transporte
    - Deve poder visualizar suas inscrições ativas e histórico de viagens
+   - Deve poder marcar quando pretender faltar na viagem.
    - Deve poder confirmar presença nas viagens (check-in)
 
 Motorista
-   - Deve poder visualizar a lista completa de viagens agendadas para o dia atual
-   - Deve poder acessar detalhes específicos de cada viagem (horário, passageiros)
-   - Deve poder visualizar a lista de alunos inscritos em cada viagem
+   - Deve poder visualizar a lista completa de rotas em que está vinculado
+   - Deve poder acessar detalhes específicos de cada rota (horário, passageiros)
+   - Deve poder visualizar a lista de alunos inscritos em cada rota
    - Deve poder verificar informações de cada aluno (nome, faculdade, cidade de origem)
    - Deve poder visualizar em tempo real quais alunos já estão a bordo do transporte
 
+## Requisitos Não Funcionais
+
+- Um usuário do tipo passageiro não pode se inscever na mesma rota mais de uma vez.
+- O código de cartão deve ser único para cada passageiro.
+- Um usuário do tipo motorista não pode se inscever em uma rota.
+- Um usuário do tipo admin não pode se inscever em uma rota.
+
 ## Arquitetura
-![alt text](docs/BusCheck.jpg)
+![Arquitetura](docs/BusCheck.jpg)
 
-## Entidades do Banco
+## ERD - Diagram de Entidades e Relacionamentos
 
+![Diagram de Entidades e Relacionamentos](docs/erd.svg)
