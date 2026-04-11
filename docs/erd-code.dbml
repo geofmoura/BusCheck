@@ -12,9 +12,9 @@ Table usuario {
 }
 
 Table passageiro {
-  usuario_id integer [primary key]
+  codigo_cartao text [primary key]
+  usuario_id integer [not null, unique]
   faculdade text [not null]
-  codigo_cartao text [not null, unique]
   
   Indexes {
     codigo_cartao [unique]
