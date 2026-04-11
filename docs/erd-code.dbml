@@ -1,0 +1,102 @@
+Table usuario {
+  id integer [primary key]
+  nome_completo text [not null]
+  email text [not null, unique]
+  telefone text
+  endereco text
+  tipo enum('ADMIN', 'MOTORISTA', 'PASSAGEIRO') [not null]
+  
+  Indexes {
+    email [unique]
+  }
+}
+
+Table passageiro {
+  usuario_id integer [primary key]
+  faculdade text [not null]
+  codigo_cartao text [not null, unique]
+  
+  Indexes {
+    codigo_cartao [unique]
+  }
+}
+
+Table rota {
+  id integer [primary key]
+  descricao text [not null]
+  codigo_veiculo text [not null]
+  motorista_id integer [not null]
+  turno enum('Manhã', 'Tarde', 'Noite') [not null]
+  
+  Indexes {
+    (motorista_id, codigo_veiculo) [unique]
+  }
+}
+
+Table passageiro_rota {
+  usuario_id integer [primary key]
+  rota_id integer [primary key]
+  dias_viagem text [not null]
+  
+  Note: 'Chave primária composta garante que um passageiro não pode se inscrever na mesma rota mais de uma vez'
+}
+
+Table check_in {
+  id integer [primary key]
+  usuario_id integer [not null]
+  codigo_veiculo text [not null]
+  data_hora datetime [not null]
+  
+  Indexes {
+    (usuario_id, codigo_veiculo, data_hora) [unique]
+  }
+}
+
+
+
+Ref: usuario.id < passageiro.usuario_id
+Ref: usuario.id < rota.motorista_id
+Ref: passageiro.usuario_id < passageiro_rota.usuario_id
+Ref: rota.id < passageiro_rota.rota_id
+Ref: passageiro.usuario_id < check_in.usuario_id
+
+
+// ### Usuário
+// | Campo | Tipo |
+// |-------|------|
+// | Id | Inteiro |
+// | Nome completo | Texto |
+// | E-mail | Texto |
+// | Telefone | Texto |
+// | Endereço | Texto |
+// | Tipo | ENUM (ADMIN, MOTORISTA, PASSAGEIRO) |
+
+// ### Passageiro
+// | Campo | Tipo |
+// |-------|------|
+// | Id de usuário | Inteiro |
+// | Faculdade | Texto |
+// | Código do cartão | Texto |
+
+// ### Rota
+// | Campo | Tipo |
+// |-------|------|
+// | Id | Inteiro |
+// | Descrição | Texto |
+// | Código do Veículo | Texto |
+// | Id do motorista | Inteiro |
+// | Turno | ENUM (Manhã, Tarde, Noite) |
+
+// ### Passageiro_Rota
+// | Campo | Tipo |
+// |-------|------|
+// | Id de usuário | Inteiro |
+// | Id da rota | Inteiro |
+// | Dias que vai viajar | Texto |
+
+// ### Check-In
+// | Campo | Tipo |
+// |-------|------|
+// | Id de usuário | Inteiro |
+// | Código do Veículo | Texto |
+// | Data e hora | DateTime |
