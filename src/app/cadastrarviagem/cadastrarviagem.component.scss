@@ -1,0 +1,192 @@
+:host {
+  --ion-background-color: #f5f5f5;
+  background-color: #f5f5f5;
+}
+
+ion-toolbar {
+  --background: #3880ff;
+  --color: white;
+  --min-height: 70px;
+  --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.toolbar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.toolbar-app-name {
+  font-size: 1.1rem;
+  color: white;
+}
+
+.toolbar-subtitle {
+  font-size: 0.8rem;
+  color: white;
+  font-weight: normal;
+}
+
+ion-title.toolbar-title {
+  padding-left: 16px;
+  text-align: left;
+  font-weight: normal;
+}
+
+ion-card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000;
+}
+
+ion-buttons ion-button {
+  --color: white;
+}
+
+.secao-titulo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 16px 0 8px;
+  color: #000;
+}
+
+.banner-card {
+  border-radius: 12px;
+  margin-bottom: 16px;
+  --background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  .banner-content {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .banner-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+
+  .banner-titulo {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+    color: #000;
+  }
+
+  .banner-descricao {
+    font-size: 13px;
+    color: #888;
+  }
+}
+
+.contadores {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+
+  .contador-item {
+    flex: 1;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 16px 8px;
+    text-align: center;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .contador-numero {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .contador-label {
+    font-size: 12px;
+    color: #888;
+  }
+}
+
+.viagem-card {
+  margin: 0 0 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --background: white;
+  position: relative !important;
+}
+
+.viagem-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+  gap: 8px;
+}
+
+.viagem-rota {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #000;
+  flex: 1;
+}
+
+.rota-texto {
+  flex: 1;
+}
+
+.viagem-info {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.info-card {
+  border-radius: 12px;
+  --background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  ion-card-title {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.info-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 6px 0;
+    font-size: 13px;
+    color: #444;
+
+    &::before {
+      content: '• ';
+      color: #3880ff;
+    }
+  }
+}
+
+.sem-dados {
+  text-align: center;
+  color: #888;
+  margin-top: 32px;
+  font-size: 14px;
+}

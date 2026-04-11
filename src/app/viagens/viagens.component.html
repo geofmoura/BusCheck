@@ -1,51 +1,124 @@
-<ion-header class="ion-header">
+<ion-menu side="end" menuId="mainMenu" contentId="mainContent">
+  <ion-header>
+    <ion-toolbar class="menu-toolbar">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="menu-content">
+    <ion-list lines="none">
+      <ion-item button>
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-label>Meu Perfil</ion-label>
+      </ion-item>
+    <ion-item button routerLink="/cadastrarviagem" (click)="fecharMenu()">
+        <ion-icon name="bus-outline" slot="start"></ion-icon>
+        <ion-label>Ver Viagens Disponíveis</ion-label>
+    </ion-item>
+    <ion-item button>
+        <ion-icon name="moon-outline" slot="start"></ion-icon>
+        <ion-label>Modo Noturno</ion-label>
+    </ion-item>
+    <ion-item button>
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Sair</ion-label>
+    </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content id="mainContent">
+
   <ion-toolbar class="toolbar-viagens">
     <ion-title class="toolbar-title">
       <div class="toolbar-content">
         <span class="toolbar-app-name">BusCheck</span>
-        <span class="toolbar-subtitle">Olá, Maria Silva Santos</span>
+        <span class="toolbar-subtitle">Olá, {{ passageiro?.nome_completo || 'Passageiro' }}</span>
       </div>
     </ion-title>
-
     <ion-buttons slot="end">
-      <ion-button class="toolbar-btn">
-        Ver Viagens
-      </ion-button>
-      <ion-button class="toolbar-btn">
-        <ion-icon name="log-out-outline"></ion-icon>
-      </ion-button>
+      <ion-menu-button menu="mainMenu" class="toolbar-btn"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
 
-<ion-content>
+  <!-- Perfil -->
   <ion-card class="perfil-card">
     <ion-card-header>
       <ion-card-title>Meu Perfil</ion-card-title>
     </ion-card-header>
-
     <ion-card-content>
-
       <div class="perfil-item">
         <span class="perfil-label">Email</span>
-        <span class="perfil-valor">maria.silva@email.com</span>
+        <span class="perfil-valor">{{ passageiro?.email }}</span>
       </div>
-
       <div class="perfil-item">
         <span class="perfil-label">Telefone</span>
-        <span class="perfil-valor">(11) 98765-4321</span>
+        <span class="perfil-valor">{{ passageiro?.telefone }}</span>
       </div>
-
       <div class="perfil-item">
         <span class="perfil-label">Universidade</span>
         <span class="perfil-valor">USP - Campus São Paulo</span>
       </div>
-
       <div class="perfil-item">
         <span class="perfil-label">Endereço de Embarque</span>
         <span class="perfil-valor">Rua das Flores, 123 - Centro</span>
       </div>
-
     </ion-card-content>
   </ion-card>
+
+  <!-- Viagens -->
+  <h2 class="secao-titulo">Minhas Viagens de Hoje</h2>
+
+  <ion-card class="viagem-card">
+    <ion-card-content>
+      <div class="viagem-header">
+        <div class="viagem-rota">
+          <ion-icon name="bus-outline"></ion-icon>
+          <span class="rota-texto">Interior → São Paulo (Zona Oeste)</span>
+        </div>
+        <ion-badge class="badge-embarcado">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+          Embarcado
+        </ion-badge>
+      </div>
+      <p class="motorista">Motorista: Roberto Carvalho</p>
+      <div class="viagem-info">
+        <span class="info-item">
+          <ion-icon name="time-outline"></ion-icon>
+          Partida: 06:00
+        </span>
+        <span class="info-item">
+          <ion-icon name="location-outline"></ion-icon>
+          Rua das Flores, 123 - Centro
+        </span>
+      </div>
+      <div class="viagem-status">
+        <ion-icon name="checkbox-outline"></ion-icon>
+        <span>Você está embarcado! Boa viagem!</span>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="viagem-card">
+    <ion-card-content>
+      <div class="viagem-header">
+        <div class="viagem-rota">
+          <ion-icon name="bus-outline"></ion-icon>
+          <span class="rota-texto">São Paulo → Interior (Retorno)</span>
+        </div>
+      </div>
+      <p class="motorista">Motorista: Roberto Carvalho</p>
+      <div class="viagem-info">
+        <span class="info-item">
+          <ion-icon name="time-outline"></ion-icon>
+          Partida: 13:30
+        </span>
+        <span class="info-item">
+          <ion-icon name="location-outline"></ion-icon>
+          Rua das Flores, 123 - Centro
+        </span>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>
