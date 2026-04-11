@@ -33,9 +33,34 @@ Motorista
 - Um usuário do tipo motorista não pode se inscever em uma rota.
 - Um usuário do tipo admin não pode se inscever em uma rota.
 
-## Arquitetura
-![Arquitetura](docs/BusCheck.jpg)
-
 ## ERD - Diagram de Entidades e Relacionamentos
 
 ![Diagram de Entidades e Relacionamentos](docs/erd.svg)
+
+## Telas
+
+**1. Autênticação**
+   - Login: permite ao usuário entrar como email e senha
+   - Cadastro: permite que o usuário se cadastre no sistema.
+   - Perfil: premite visualizar as informações do usuário.
+
+**2. Passageiro**
+   -  Rotas cadastradas: permite visualizar as rotas em que ele está cadastrado
+   - Cadastar-se em uma rota: permite se cadastar para utilizar uma rota.
+   -  Informar ausência: permite ao usuário informar que não usará o transpote em um dia espessifico.
+   - Histórico de check-in
+
+**3. Motorista**
+   - Rotas cadastradas: permite visualizar as rotas em que ele está cadastrado
+   - Detalhes da rota: permite visualizar as informações da rota
+   - lista de presença da rota: permite visualizar a lista de alunos que utilizarão o trasporte no dia.
+
+**3. Motorista**
+   - Rotas cadastradas: permite visualizar todas as rotas cadastradas no sistema
+   - Detalhes da rota: permite visualizar as informações da rota
+
+   
+
+## Arquitetura
+![Arquitetura](docs/BusCheck.jpg)
+
