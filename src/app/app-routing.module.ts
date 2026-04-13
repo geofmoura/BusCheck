@@ -19,6 +19,12 @@ const routes: Routes = [
     loadChildren: () => import('./cadastrarviagem/cadastrarviagem.module').then(m => m.CadastrarViagemModule)
   },
   {
+  path: 'motorista',
+  loadChildren: () =>
+    import('./motorista/motorista.module')
+      .then(m => m.MotoristaModule)
+},
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
