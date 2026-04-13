@@ -1,4 +1,5 @@
-<ion-header>
+<ion-content>
+
   <ion-toolbar>
     <ion-title class="toolbar-title">
       <div class="toolbar-content">
@@ -12,87 +13,88 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header>
 
-<ion-content class="ion-padding">
+  <div class="ion-padding">
 
-  <ion-card class="banner-card">
-    <ion-card-content>
-      <div class="banner-content">
-        <ion-icon name="person-circle-outline" color="primary" class="banner-icon"></ion-icon>
-        <div>
-          <p class="banner-titulo">Inscreva-se nas viagens que você deseja utilizar</p>
-          <p class="banner-descricao">
-            Você pode se inscrever em múltiplas viagens. No dia da viagem, confirme
-            sua presença e esteja pronto para embarcar em até 8 minutos.
-          </p>
+    <ion-card class="banner-card">
+      <ion-card-content>
+        <div class="banner-content">
+          <ion-icon name="person-circle-outline" color="primary" class="banner-icon"></ion-icon>
+          <div>
+            <p class="banner-titulo">Inscreva-se nas viagens que você deseja utilizar</p>
+            <p class="banner-descricao">
+              Você pode se inscrever em múltiplas viagens. No dia da viagem, confirme
+              sua presença e esteja pronto para embarcar em até 8 minutos.
+            </p>
+          </div>
         </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="contadores">
+      <div class="contador-item">
+        <span class="contador-numero">{{ totalInscritas }}</span>
+        <span class="contador-label">Viagens Inscritas</span>
       </div>
-    </ion-card-content>
-  </ion-card>
+      <div class="contador-item">
+        <span class="contador-numero">{{ totalDisponiveis }}</span>
+        <span class="contador-label">Viagens Disponíveis</span>
+      </div>
+    </div>
 
-  <div class="contadores">
-    <div class="contador-item">
-      <span class="contador-numero">{{ totalInscritas }}</span>
-      <span class="contador-label">Viagens Inscritas</span>
-    </div>
-    <div class="contador-item">
-      <span class="contador-numero">{{ totalDisponiveis }}</span>
-      <span class="contador-label">Viagens Disponíveis</span>
-    </div>
+    <h2 class="secao-titulo">Escolha suas Viagens</h2>
+
+    <ng-container *ngIf="activeTab === 'disponiveis'">
+
+      <ng-container *ngIf="viagensDisponiveis.length > 0; else semViagens">
+        <ion-card *ngFor="let viagem of viagensDisponiveis" class="viagem-card">
+          <ion-card-content>
+            <p><strong>{{ viagem.origem }}</strong> → <strong>{{ viagem.destino }}</strong></p>
+            <p>{{ viagem.dataPartida }} às {{ viagem.horario }}</p>
+            <p>Vagas: {{ viagem.vagas }}</p>
+            <ion-button expand="block" size="small" (click)="inscrever(viagem)">
+              Inscrever-se
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ng-container>
+
+      <ng-template #semViagens>
+        <ion-card class="info-card">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="information-circle" color="primary"></ion-icon>
+              Informações Importantes
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ul class="info-lista">
+              <li>Você pode se inscrever em quantas viagens desejar</li>
+              <li>No dia da viagem, confirme sua presença com antecedência</li>
+              <li>Após confirmar, você terá 8 minutos para embarcar</li>
+              <li>Use o cartão físico para autenticar seu embarque</li>
+              <li>Caso não embarque no tempo, você perderá a viagem</li>
+            </ul>
+          </ion-card-content>
+        </ion-card>
+      </ng-template>
+
+    </ng-container>
+
+    <ng-container *ngIf="activeTab === 'minhas'">
+      <ng-container *ngIf="viagensInscritas.length > 0; else semInscritas">
+        <ion-card *ngFor="let viagem of viagensInscritas" class="viagem-card">
+          <ion-card-content>
+            <p><strong>{{ viagem.origem }}</strong> → <strong>{{ viagem.destino }}</strong></p>
+            <p>{{ viagem.dataPartida }} às {{ viagem.horario }}</p>
+          </ion-card-content>
+        </ion-card>
+      </ng-container>
+      <ng-template #semInscritas>
+        <p class="sem-dados">Você ainda não se inscreveu em nenhuma viagem.</p>
+      </ng-template>
+    </ng-container>
+
   </div>
-
-  <h2 class="secao-titulo">Escolha suas Viagens</h2>
-
-  <ng-container *ngIf="activeTab === 'disponiveis'">
-
-    <ng-container *ngIf="viagensDisponiveis.length > 0; else semViagens">
-      <ion-card *ngFor="let viagem of viagensDisponiveis" class="viagem-card">
-        <ion-card-content>
-          <p><strong>{{ viagem.origem }}</strong> → <strong>{{ viagem.destino }}</strong></p>
-          <p>{{ viagem.dataPartida }} às {{ viagem.horario }}</p>
-          <p>Vagas: {{ viagem.vagas }}</p>
-          <ion-button expand="block" size="small" (click)="inscrever(viagem)">
-            Inscrever-se
-          </ion-button>
-        </ion-card-content>
-      </ion-card>
-    </ng-container>
-
-    <ng-template #semViagens>
-      <ion-card class="info-card">
-        <ion-card-header>
-          <ion-card-title>
-            <ion-icon name="information-circle" color="primary"></ion-icon>
-            Informações Importantes
-          </ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ul class="info-lista">
-            <li>Você pode se inscrever em quantas viagens desejar</li>
-            <li>No dia da viagem, confirme sua presença com antecedência</li>
-            <li>Após confirmar, você terá 8 minutos para embarcar</li>
-            <li>Use o cartao físico para autenticar seu embarque</li>
-            <li>Caso não embarque no tempo, você perderá a viagem</li>
-          </ul>
-        </ion-card-content>
-      </ion-card>
-    </ng-template>
-
-  </ng-container>
-
-  <ng-container *ngIf="activeTab === 'minhas'">
-    <ng-container *ngIf="viagensInscritas.length > 0; else semInscritas">
-      <ion-card *ngFor="let viagem of viagensInscritas" class="viagem-card">
-        <ion-card-content>
-          <p><strong>{{ viagem.origem }}</strong> → <strong>{{ viagem.destino }}</strong></p>
-          <p>{{ viagem.dataPartida }} às {{ viagem.horario }}</p>
-        </ion-card-content>
-      </ion-card>
-    </ng-container>
-    <ng-template #semInscritas>
-      <p class="sem-dados">Você ainda não se inscreveu em nenhuma viagem.</p>
-    </ng-template>
-  </ng-container>
 
 </ion-content>
