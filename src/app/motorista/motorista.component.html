@@ -1,0 +1,169 @@
+<ion-menu side="end" menuId="motoristaMenu" contentId="motoristaContent">
+  <ion-header>
+    <ion-toolbar class="menu-toolbar">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="menu-content">
+    <ion-list lines="none">
+      <ion-item button (click)="toggleModoNoturno(); fecharMenu()">
+        <ion-icon [name]="modoNoturnoAtivo ? 'sunny-outline' : 'moon-outline'" slot="start"></ion-icon>
+        <ion-label>{{ modoNoturnoAtivo ? 'Modo Claro' : 'Modo Noturno' }}</ion-label>
+      </ion-item>
+      <ion-item button (click)="sair()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Sair</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content id="motoristaContent">
+
+  <ion-toolbar class="toolbar-motorista">
+    <ion-title class="toolbar-title">
+      <div class="toolbar-content">
+        <span class="toolbar-app-name">Painel do Motorista</span>
+        <span class="toolbar-subtitle">Olá, {{ nomeMotorista }}</span>
+      </div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="motoristaMenu" class="toolbar-btn"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div class="ion-padding">
+
+    <!-- Seleção de viagem -->
+    <ion-card class="viagem-selector-card">
+      <ion-card-content>
+        <p class="selector-titulo">Selecione a Viagem</p>
+        <div class="viagem-opcoes">
+          <button
+            *ngFor="let viagem of viagens"
+            class="viagem-btn"
+            [class.viagem-btn-ativo]="viagemSelecionada.id === viagem.id"
+            (click)="selecionarViagem(viagem)">
+            <ion-icon name="time-outline"></ion-icon>
+            {{ viagem.horario }} - {{ viagem.origem }} → {{ viagem.destino }}
+          </button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Abas -->
+    <div class="abas">
+      <button
+        class="aba-btn"
+        [class.aba-ativa]="activeTab === 'lista'"
+        (click)="activeTab = 'lista'">
+        <ion-icon name="people-outline"></ion-icon>
+        Lista de Passageiros
+      </button>
+      <button
+        class="aba-btn"
+        [class.aba-ativa]="activeTab === 'mapa'"
+        (click)="activeTab = 'mapa'">
+        <ion-icon name="navigate-outline"></ion-icon>
+        Mapa de Rota
+      </button>
+    </div>
+
+    <!-- Lista de passageiros -->
+    <ng-container *ngIf="activeTab === 'lista'">
+      <div class="lista-header">
+        <h3 class="lista-titulo">Passageiros - {{ viagemSelecionada.origem }} → {{ viagemSelecionada.destino }}</h3>
+        <p class="lista-subtitulo">Acompanhe em tempo real as confirmações e embarques</p>
+      </div>
+
+      <ion-card
+        *ngFor="let passageiro of viagemSelecionada.passageiros"
+        class="passageiro-card"
+        [class.card-embarcado]="passageiro.status === 'embarcado'"
+        [class.card-confirmado]="passageiro.status === 'confirmado'"
+        [class.card-pendente]="passageiro.status === 'pendente'">
+        <ion-card-content>
+          <div class="passageiro-header">
+            <span class="passageiro-nome">{{ passageiro.nome }}</span>
+            <ion-badge [color]="getStatusColor(passageiro.status)" class="status-badge">
+              <ion-icon [name]="getStatusIcon(passageiro.status)"></ion-icon>
+              {{ getStatusLabel(passageiro.status) }}
+            </ion-badge>
+          </div>
+
+          <div class="passageiro-endereco">
+            <ion-icon name="location-outline"></ion-icon>
+            {{ passageiro.endereco }}
+          </div>
+
+          <div class="passageiro-detalhes">
+            <div class="detalhe-item">
+              <span class="detalhe-label">Universidade:</span>
+              <span class="detalhe-valor">{{ passageiro.universidade }}</span>
+            </div>
+            <div class="detalhe-item">
+              <span class="detalhe-label">Telefone:</span>
+              <span class="detalhe-valor">{{ passageiro.telefone }}</span>
+            </div>
+          </div>
+
+          <div class="passageiro-tempos" *ngIf="passageiro.confirmadoEm || passageiro.embarcadoEm">
+            <div class="detalhe-item" *ngIf="passageiro.confirmadoEm">
+              <span class="detalhe-label">Confirmado:</span>
+              <span class="detalhe-valor">{{ passageiro.confirmadoEm }}</span>
+            </div>
+            <div class="detalhe-item" *ngIf="passageiro.embarcadoEm">
+              <span class="detalhe-label">Embarcado:</span>
+              <span class="detalhe-valor">{{ passageiro.embarcadoEm }}</span>
+            </div>
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+
+    <!-- Mapa de rota -->
+    <ng-container *ngIf="activeTab === 'mapa'">
+      <div class="lista-header">
+        <h3 class="lista-titulo">Mapa de Rota Otimizada</h3>
+        <p class="lista-subtitulo">Rota sugerida para coletar os passageiros confirmados</p>
+      </div>
+
+      <ion-card class="mapa-card">
+        <ion-card-content>
+          <div class="mapa-placeholder">
+            <ion-icon name="navigate-outline" class="mapa-icon" color="success"></ion-icon>
+            <h4>Integração com GPS</h4>
+            <p>Em produção, aqui seria exibido um mapa interativo com:</p>
+            <ul class="mapa-lista">
+              <li><ion-icon name="checkmark-circle" color="success"></ion-icon> Localização em tempo real do ônibus</li>
+              <li><ion-icon name="checkmark-circle" color="success"></ion-icon> Pontos de coleta dos passageiros confirmados</li>
+              <li><ion-icon name="checkmark-circle" color="success"></ion-icon> Rota otimizada para economia de tempo</li>
+              <li><ion-icon name="checkmark-circle" color="success"></ion-icon> Navegação turn-by-turn</li>
+              <li><ion-icon name="checkmark-circle" color="success"></ion-icon> Trânsito em tempo real</li>
+            </ul>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <div class="mapa-passageiros">
+        <div
+          *ngFor="let passageiro of viagemSelecionada.passageiros; let i = index"
+          class="mapa-passageiro-item">
+          <span class="mapa-numero">{{ i + 1 }}</span>
+          <div>
+            <p class="mapa-nome">{{ passageiro.nome }}</p>
+            <p class="mapa-end">
+              <ion-icon name="location-outline"></ion-icon>
+              {{ passageiro.endereco }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+  </div>
+
+</ion-content>

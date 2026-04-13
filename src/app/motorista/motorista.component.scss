@@ -1,0 +1,404 @@
+:host {
+  --ion-background-color: var(--app-bg);
+  background-color: var(--app-bg);
+}
+
+ion-content {
+  --padding-top: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+// ─── Menu ───
+
+ion-menu {
+  --width: 50%;
+}
+
+ion-menu::part(container) {
+  border: none;
+  box-shadow: none;
+}
+
+.menu-toolbar {
+  --background: #3880ff;
+  --color: white;
+  box-shadow: none;
+  border: none;
+}
+
+.menu-content {
+  --background: var(--app-card-bg);
+}
+
+ion-menu ion-list {
+  background: var(--app-card-bg);
+  padding-top: 8px;
+}
+
+ion-menu ion-item {
+  --background: var(--app-card-bg);
+  --color: var(--app-text);
+  --inner-border-width: 0;
+  --border-width: 0;
+}
+
+ion-menu ion-icon {
+  color: var(--app-text);
+}
+
+// ─── Toolbar ───
+
+ion-toolbar.toolbar-motorista {
+  --background: #3880ff;
+  --color: white;
+  --min-height: 70px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.toolbar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.toolbar-app-name {
+  font-size: 1.1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.toolbar-subtitle {
+  font-size: 0.8rem;
+  color: white;
+  font-weight: normal;
+}
+
+ion-title.toolbar-title {
+  padding-left: 16px;
+  text-align: left;
+  font-weight: normal;
+}
+
+ion-menu-button {
+  --color: white;
+}
+
+ion-card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--app-text);
+}
+
+// ─── Seleção de viagem ───
+
+.viagem-selector-card {
+  border-radius: 12px;
+  --background: var(--app-card-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.selector-titulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--app-text);
+  margin-bottom: 12px;
+}
+
+.viagem-opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.viagem-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--app-border);
+  background: transparent;
+  color: var(--app-text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+
+  ion-icon {
+    font-size: 16px;
+    color: var(--app-text-muted);
+  }
+}
+
+.viagem-btn-ativo {
+  background: #3880ff;
+  color: white;
+  border-color: #3880ff;
+
+  ion-icon {
+    color: white;
+  }
+}
+
+// ─── Abas ───
+
+.abas {
+  display: flex;
+  border: 1px solid var(--app-border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  background: var(--app-card-bg);
+}
+
+.aba-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  border: none;
+  background: transparent;
+  color: var(--app-text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+
+  ion-icon {
+    font-size: 16px;
+  }
+}
+
+.aba-ativa {
+  background: var(--app-card-bg);
+  color: var(--app-text);
+  font-weight: 600;
+  border-bottom: 2px solid #2e7d32;
+}
+
+// ─── Lista ───
+
+.lista-header {
+  margin-bottom: 12px;
+}
+
+.lista-titulo {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--app-text);
+  margin: 0 0 4px;
+}
+
+.lista-subtitulo {
+  font-size: 0.8rem;
+  color: var(--app-text-muted);
+  margin: 0;
+}
+
+// ─── Card passageiro ───
+
+.passageiro-card {
+  border-radius: 12px;
+  --background: var(--app-card-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+  border-left: 4px solid transparent;
+}
+
+.card-embarcado {
+  border-left-color: #2e7d32;
+}
+
+.card-confirmado {
+  border-left-color: #f57c00;
+}
+
+.card-pendente {
+  border-left-color: #9e9e9e;
+}
+
+.passageiro-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.passageiro-nome {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--app-text);
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+.passageiro-endereco {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--app-text-muted);
+  margin-bottom: 12px;
+
+  ion-icon {
+    font-size: 14px;
+  }
+}
+
+.passageiro-detalhes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.passageiro-tempos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--app-border);
+}
+
+.detalhe-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.detalhe-label {
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+}
+
+.detalhe-valor {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--app-text);
+}
+
+// ─── Mapa ───
+
+.mapa-card {
+  border-radius: 12px;
+  --background: var(--app-card-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.mapa-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 8px;
+
+  h4 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--app-text);
+    margin: 8px 0;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: var(--app-text-muted);
+    margin-bottom: 12px;
+  }
+}
+
+.mapa-icon {
+  font-size: 48px;
+  margin-bottom: 8px;
+}
+
+.mapa-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  text-align: left;
+  width: 100%;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+    font-size: 0.85rem;
+    color: var(--app-text);
+  }
+}
+
+.mapa-sugestao {
+  background: var(--app-card-bg);
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+
+  p {
+    font-size: 0.8rem;
+    color: #f57c00;
+    margin: 0;
+  }
+}
+
+.mapa-passageiros {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mapa-passageiro-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--app-card-bg);
+  border-radius: 10px;
+  padding: 10px 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.mapa-numero {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #2e7d32;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.mapa-nome {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--app-text);
+  margin: 0 0 2px;
+}
+
+.mapa-end {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--app-text-muted);
+  margin: 0;
+
+  ion-icon {
+    font-size: 12px;
+  }
+}
