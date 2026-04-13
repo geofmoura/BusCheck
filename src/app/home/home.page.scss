@@ -1,8 +1,6 @@
 :host {
-
-  --ion-background-color: #f5f5f5;
-  --ion-text-color: #000000;
-
+  --ion-background-color: var(--app-bg);
+  --ion-text-color: var(--app-text);
 }
 
 .header-icon {
@@ -17,7 +15,7 @@
   font-weight: bold;
   margin: 0;
   text-align: center;
-  color: #333;
+  color: var(--app-text-secondary);
 }
 
 .floating-header {
@@ -29,7 +27,7 @@
 }
 
 ion-card {
-  background: #ffffff;
+  background: var(--app-card-bg);
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin: 16px;
@@ -40,9 +38,7 @@ ion-card-title {
   font-weight: bold;
   margin: 0;
   text-align: center;
-  --color: #333;
-  --text-transform: none;
-
+  color: var(--app-text-secondary);
 }
 
 .button-entrar {
@@ -55,52 +51,52 @@ ion-card-title {
 }
 
 ion-card-subtitle {
-  color: #666;
+  color: var(--app-text-muted);
   font-size: 0.9rem;
   text-align: center;
 }
 
 .welcome-message p {
-    text-align: center;
-    font-size: 1rem;
-    color: #444;
-    margin: 20px 0;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--app-text-secondary);
+  margin: 20px 0;
 }
 
 .card-icon-enter {
-    display: block;        
-    margin: 15px auto 0;   
-    width: 40px;           
-    height: auto;
+  display: block;
+  margin: 15px auto 0;
+  width: 40px;
+  height: auto;
 }
 
 .cadastro-passageiro {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0 30px 0;     
+  margin: 20px 0 30px 0;
   text-align: center;
 }
 
 .cadastro-link {
-    color: rgb(56, 56, 255);
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: 1rem;
-    margin: 0;                
+  color: #3880ff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0;
 }
 
 ion-footer {
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .ion-hotbar {
-    --background: white;
-    --color: #444; 
+  --background: var(--app-card-bg);
+  --color: var(--app-text-secondary);
 }
 
 .title-hotbar {
-    text-align: center;
+  text-align: center;
 }
 
 mat-form-field {
