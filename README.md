@@ -3,28 +3,28 @@ Aplicativo mobile (Android) para organização de viagens de ônibus privados, c
 
 ## Requisitos Funcionais
 
-Administrador
-   - Deve ser capaz de cadastrar novas rotas de viagem, incluindo turno e veiculo
-   - Deve poder visualizar todas as rotas cadastradas
-   - Deve poder editar informações de rotas existentes
-   - Deve poder desativar/reativar rotas conforme necessário
+**Administrador**
+- RF01 - Cadastrar novas rotas de viagem, incluindo turno e veículo
+- RF02 - Visualizar todas as rotas cadastradas
+- RF03 - Editar informações de rotas existentes
+- RF04 - Desativar/reativar rotas conforme necessário
 
-Passageiro
-   - Deve poder criar uma conta de usuário com informações pessoais
-   - Deve poder vincular-se a uma instituição de ensino (faculdade/universidade)
-   - Deve poder visualizar todas as rotas cadastradas
-   - Deve poder inscrever-se em uma rota de viagem disponível
-   - Deve poder selecionar os dias da semana em que utilizará o transporte
-   - Deve poder visualizar suas inscrições ativas e histórico de viagens
-   - Deve poder marcar quando pretender faltar na viagem.
-   - Deve poder confirmar presença nas viagens (check-in)
+**Passageiro**
+- RF05 - Criar uma conta de usuário com informações pessoais
+- RF06 - Vincular-se a uma instituição de ensino (faculdade/universidade)
+- RF07 - Visualizar todas as rotas cadastradas
+- RF08 - Inscrever-se em uma rota de viagem disponível
+- RF09 - Selecionar os dias da semana em que utilizará o transporte
+- RF10 - Visualizar suas inscrições ativas e histórico de viagens
+- RF11 - Marcar quando pretender faltar na viagem
+- RF12 - Confirmar presença nas viagens (check-in)
 
-Motorista
-   - Deve poder visualizar a lista completa de rotas em que está vinculado
-   - Deve poder acessar detalhes específicos de cada rota (horário, passageiros)
-   - Deve poder visualizar a lista de alunos inscritos em cada rota
-   - Deve poder verificar informações de cada aluno (nome, faculdade, cidade de origem)
-   - Deve poder visualizar em tempo real quais alunos já estão a bordo do transporte
+**Motorista**
+- RF13 - Visualizar a lista completa de rotas em que está vinculado
+- RF14 - Acessar detalhes específicos de cada rota (horário, passageiros)
+- RF15 - Visualizar a lista de alunos inscritos em cada rota
+- RF16 - Verificar informações de cada aluno (nome, faculdade, cidade de origem)
+- RF17 - Visualizar em tempo real quais alunos já estão a bordo do transporte
 
 ## Requisitos Não Funcionais
 
@@ -60,7 +60,6 @@ Motorista
    - Detalhes da rota: permite visualizar as informações da rota
 
    
-
 ## Arquitetura
 ![Arquitetura](docs/BusCheck.jpg)
 
