@@ -10,7 +10,7 @@ export interface PassageiroMotorista {
   endereco: string;
   universidade: string;
   telefone: string;
-  status: 'pendente' | 'confirmado' | 'embarcado';
+  status: 'pendente' | 'confirmado' | 'embarcado' | 'cancelado';
   confirmadoEm?: string;
   embarcadoEm?: string;
 }
@@ -67,6 +67,13 @@ export class MotoristaComponent implements OnInit {
           telefone: '(11) 96543-2109',
           status: 'pendente',
         },
+        {
+          nome: 'Beatriz Almeida Costa',
+          endereco: 'Travessa São João, 567 - Bairro Alto',
+          universidade: 'UNICAMP - Campinas',
+          telefone: '(11) 94321-0987',
+          status: 'cancelado',
+        }
       ]
     },
     {
@@ -117,32 +124,35 @@ export class MotoristaComponent implements OnInit {
     this.menuCtrl.close('motoristaMenu');
   }
 
-  getStatusColor(status: string): string {
-    switch (status) {
-      case 'embarcado': return 'success';
-      case 'confirmado': return 'warning';
-      case 'pendente': return 'medium';
-      default: return 'medium';
-    }
+getStatusColor(status: string): string {
+  switch (status) {
+    case 'embarcado': return 'success';
+    case 'confirmado': return 'warning';
+    case 'cancelado': return 'danger';
+    case 'pendente': return 'medium';
+    default: return 'medium';
   }
+}
 
-  getStatusLabel(status: string): string {
-    switch (status) {
-      case 'embarcado': return 'Embarcado';
-      case 'confirmado': return 'Confirmado';
-      case 'pendente': return 'Pendente';
-      default: return 'Pendente';
-    }
+getStatusLabel(status: string): string {
+  switch (status) {
+    case 'embarcado': return 'Embarcado';
+    case 'confirmado': return 'Confirmado';
+    case 'cancelado': return 'Perdeu a viagem';
+    case 'pendente': return 'Pendente';
+    default: return 'Pendente';
   }
+}
 
-  getStatusIcon(status: string): string {
-    switch (status) {
-      case 'embarcado': return 'checkmark-circle-outline';
-      case 'confirmado': return 'time-outline';
-      case 'pendente': return 'information-circle-outline';
-      default: return 'information-circle-outline';
-    }
+getStatusIcon(status: string): string {
+  switch (status) {
+    case 'embarcado': return 'checkmark-circle-outline';
+    case 'confirmado': return 'time-outline';
+    case 'cancelado': return 'close-circle-outline';
+    case 'pendente': return 'information-circle-outline';
+    default: return 'information-circle-outline';
   }
+}
 
   sair() {
     this.temaService.resetarTema();

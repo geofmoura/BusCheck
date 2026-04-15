@@ -115,7 +115,6 @@ ion-buttons ion-button {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --background: var(--app-card-bg);
-  position: relative !important;
 }
 
 .viagem-header {
@@ -138,14 +137,15 @@ ion-buttons ion-button {
 
 .rota-texto {
   flex: 1;
+  font-size: 1.05rem;
 }
 
 .viagem-info {
   display: flex;
   gap: 24px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   color: var(--app-text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
 .info-item {
@@ -154,10 +154,75 @@ ion-buttons ion-button {
   gap: 6px;
 }
 
+.motorista-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  color: var(--app-text-secondary);
+  border-bottom: 1px solid var(--app-border);
+  font-size: 0.95rem;
+
+  ion-icon {
+    color: var(--ion-color-primary);
+  }
+}
+
+.campo-endereco {
+  margin-bottom: 20px;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--app-text);
+
+    ion-icon {
+      color: var(--ion-color-primary);
+      font-size: 1.1rem;
+    }
+  }
+
+  .endereco-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--app-border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: var(--app-card-bg);
+    color: var(--app-text);
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--ion-color-primary);
+    }
+
+    &::placeholder {
+      color: var(--app-text-muted);
+    }
+  }
+}
+
+.botao-confirmar {
+  margin-top: 4px;
+  --border-radius: 8px;
+  font-weight: 600;
+  height: 48px;
+  --background: var(--ion-color-primary);
+  --background-activated: var(--ion-color-primary-shade);
+  --background-disabled: var(--ion-color-medium-tint);
+}
+
 .info-card {
   border-radius: 12px;
   --background: var(--app-card-bg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 8px;
 
   ion-card-title {
     font-size: 16px;
@@ -189,4 +254,134 @@ ion-buttons ion-button {
   color: var(--app-text-muted);
   margin-top: 32px;
   font-size: 14px;
+}
+
+.viagem-disponivel-exemplo {
+  border: 2px solid var(--ion-color-primary);
+  margin-bottom: 24px;
+  position: relative;
+  overflow: visible;
+
+  &::before {
+    content: 'EXEMPLO';
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    background: var(--ion-color-primary);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+  }
+}
+
+.viagem-header-exemplo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+
+  .rota-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--app-text);
+  }
+
+  .rota-origem, .rota-destino {
+    color: var(--app-text);
+  }
+
+  .rota-seta {
+    color: var(--ion-color-primary);
+    font-size: 1.2rem;
+  }
+
+  .horario-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--ion-color-primary-tint);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    ion-icon {
+      font-size: 1rem;
+    }
+  }
+}
+
+.motorista-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  color: var(--app-text-secondary);
+  border-bottom: 1px solid var(--app-border);
+  font-size: 0.95rem;
+
+  ion-icon {
+    color: var(--ion-color-primary);
+  }
+}
+
+.endereco-campos {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.campo-endereco {
+  label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--app-text);
+
+    ion-icon {
+      color: var(--ion-color-primary);
+    }
+  }
+
+  .endereco-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid var(--app-border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: var(--app-card-bg);
+    color: var(--app-text);
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--ion-color-primary);
+    }
+
+    &::placeholder {
+      color: var(--app-text-muted);
+    }
+  }
+}
+
+.botao-confirmar {
+  margin-top: 8px;
+  --border-radius: 8px;
+  font-weight: 600;
+  height: 48px;
+  --background: var(--ion-color-primary);
+  --background-activated: var(--ion-color-primary-shade);
+  --background-disabled: var(--ion-color-medium-tint);
 }
