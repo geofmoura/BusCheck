@@ -44,56 +44,119 @@
 
     <h2 class="secao-titulo">Escolha suas Viagens</h2>
 
-    <ng-container *ngIf="activeTab === 'disponiveis'">
+    <ion-card class="viagem-card">
+      <ion-card-content>
+        <div class="viagem-header">
+          <div class="viagem-rota">
+            <span class="rota-texto">
+              <strong>Interior</strong> → <strong>São Paulo (Zona Oeste)</strong>
+            </span>
+          </div>
+        </div>
 
-      <ng-container *ngIf="viagensDisponiveis.length > 0; else semViagens">
-        <ion-card *ngFor="let viagem of viagensDisponiveis" class="viagem-card">
-          <ion-card-content>
-            <p><strong>{{ viagem.origem }}</strong> → <strong>{{ viagem.destino }}</strong></p>
-            <p>{{ viagem.dataPartida }} às {{ viagem.horario }}</p>
-            <p>Vagas: {{ viagem.vagas }}</p>
-            <ion-button expand="block" size="small" (click)="inscrever(viagem)">
-              Inscrever-se
-            </ion-button>
-          </ion-card-content>
-        </ion-card>
-      </ng-container>
+        <div class="viagem-info">
+          <div class="info-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>06:00</span>
+          </div>
+        </div>
 
-      <ng-template #semViagens>
-        <ion-card class="info-card">
-          <ion-card-header>
-            <ion-card-title>
-              <ion-icon name="information-circle" color="primary"></ion-icon>
-              Informações Importantes
-            </ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <ul class="info-lista">
-              <li>Você pode se inscrever em quantas viagens desejar</li>
-              <li>No dia da viagem, confirme sua presença com antecedência</li>
-              <li>Após confirmar, você terá 8 minutos para embarcar</li>
-              <li>Use o cartão físico para autenticar seu embarque</li>
-              <li>Caso não embarque no tempo, você perderá a viagem</li>
-            </ul>
-          </ion-card-content>
-        </ion-card>
-      </ng-template>
+        <div class="motorista-info">
+          <ion-icon name="person-outline"></ion-icon>
+          <span>Motorista: <strong>Roberto Carvalho</strong></span>
+        </div>
 
-    </ng-container>
+        <div class="campo-endereco">
+          <label>
+            <ion-icon name="location-outline"></ion-icon>
+            Endereço de Embarque
+          </label>
+          <input 
+            type="text" 
+            [(ngModel)]="enderecoEmbarqueIda" 
+            placeholder="Digite o endereço de embarque"
+            class="endereco-input"
+          >
+        </div>
 
-    <ng-container *ngIf="activeTab === 'minhas'">
-      <ng-container *ngIf="viagensInscritas.length > 0; else semInscritas">
-        <ion-card *ngFor="let viagem of viagensInscritas" class="viagem-card">
-          <ion-card-content>
-            <p><strong>{{ viagem.origem }}</strong> → <strong>{{ viagem.destino }}</strong></p>
-            <p>{{ viagem.dataPartida }} às {{ viagem.horario }}</p>
-          </ion-card-content>
-        </ion-card>
-      </ng-container>
-      <ng-template #semInscritas>
-        <p class="sem-dados">Você ainda não se inscreveu em nenhuma viagem.</p>
-      </ng-template>
-    </ng-container>
+        <ion-button 
+          expand="block" 
+          class="botao-confirmar"
+          (click)="confirmarInscricaoIda()"
+          [disabled]="!enderecoEmbarqueIda"
+        >
+          <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+          Confirmar Inscrição
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="viagem-card">
+      <ion-card-content>
+
+        <div class="viagem-header">
+          <div class="viagem-rota">
+            <span class="rota-texto">
+              <strong>São Paulo (Zona Oeste)</strong> → <strong>Interior</strong>
+            </span>
+          </div>
+        </div>
+
+        <div class="viagem-info">
+          <div class="info-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>13:30</span>
+          </div>
+        </div>
+
+        <div class="motorista-info">
+          <ion-icon name="person-outline"></ion-icon>
+          <span>Motorista: <strong>Roberto Carvalho</strong></span>
+        </div>
+
+        <div class="campo-endereco">
+          <label>
+            <ion-icon name="flag-outline"></ion-icon>
+            Endereço de Desembarque
+          </label>
+          <input 
+            type="text" 
+            [(ngModel)]="enderecoDesembarqueVolta" 
+            placeholder="Digite o endereço de desembarque"
+            class="endereco-input"
+          >
+        </div>
+
+        <ion-button 
+          expand="block" 
+          class="botao-confirmar"
+          (click)="confirmarInscricaoVolta()"
+          [disabled]="!enderecoDesembarqueVolta"
+        >
+          <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+          Confirmar Inscrição
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+    <ion-card class="info-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="information-circle" color="primary"></ion-icon>
+          Informações Importantes
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ul class="info-lista">
+          <li>Você pode se inscrever em quantas viagens desejar</li>
+          <li>No dia da viagem, confirme sua presença com antecedência</li>
+          <li>Após confirmar, você terá 8 minutos para embarcar</li>
+          <li>Use o cartão físico para autenticar seu embarque</li>
+          <li>Caso não embarque no tempo, você perderá a viagem</li>
+        </ul>
+      </ion-card-content>
+    </ion-card>
 
   </div>
 
