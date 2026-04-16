@@ -80,6 +80,7 @@
       <ion-card
         *ngFor="let passageiro of viagemSelecionada.passageiros"
         class="passageiro-card"
+        [class.card-cancelado]="passageiro.status === 'cancelado'"
         [class.card-embarcado]="passageiro.status === 'embarcado'"
         [class.card-confirmado]="passageiro.status === 'confirmado'"
         [class.card-pendente]="passageiro.status === 'pendente'">
