@@ -39,18 +39,30 @@ export class Supabase {
       if (authError) throw authError;
 
       if (authData.user) {
-        const { error: perfilError } = await this.supabase
-          .from('passageiros')
+        const { data, error: perfilError } = await this.supabase
+          .from('usuario')
           .insert([
-            { 
+            {
+              auth_user_id: authData.user.id,
               nome_completo: passageiro.nome_completo,
               email: passageiro.email,
-              senha: passageiro.senha,
-              telefone: passageiro.telefone
+              telefone: passageiro.telefone,
+              tipo: 'PASSAGEIRO'
             }
-          ]);
+          ])
 
         if (perfilError) throw perfilError;
+
+        const { error: passageiroError } = await this.supabase
+          .from('passageiro')
+          .insert([{
+            usuario_id: authData.user.id,
+            codigo_cartao: "123456",
+            faculdade: "Estácio"
+          }]);
+
+        if (passageiroError) throw passageiroError;
+
       }
 
       return { success: true, data: authData };
@@ -80,7 +92,7 @@ export class Supabase {
   async getPassageiroAtual() {
     try {
       const { data: { user } } = await this.supabase.auth.getUser();
-      
+
       if (!user) throw new Error('Usuário não autenticado');
 
       const { data, error } = await this.supabase
