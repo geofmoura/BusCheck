@@ -29,7 +29,7 @@ Table rota {
   turno enum('Manhã', 'Tarde', 'Noite') [not null]
   
   Indexes {
-    (motorista_id, codigo_veiculo) [unique]
+    (codigo_veiculo, turno) [unique]
   }
 }
 
@@ -43,22 +43,20 @@ Table passageiro_rota {
 
 Table check_in {
   id integer [primary key]
-  usuario_id integer [not null]
+  codigo_cartao integer [not null]
   codigo_veiculo text [not null]
   data_hora datetime [not null]
   
   Indexes {
-    (usuario_id, codigo_veiculo, data_hora) [unique]
+    (codigo_cartao, codigo_veiculo, data_hora) [unique]
   }
 }
-
-
 
 Ref: usuario.id < passageiro.usuario_id
 Ref: usuario.id < rota.motorista_id
 Ref: passageiro.usuario_id < passageiro_rota.usuario_id
 Ref: rota.id < passageiro_rota.rota_id
-Ref: passageiro.usuario_id < check_in.usuario_id
+Ref: passageiro.codigo_cartao < check_in.codigo_cartao
 
 
 // ### Usuário

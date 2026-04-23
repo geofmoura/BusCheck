@@ -32,6 +32,7 @@ Aplicativo mobile (Android) para organização de viagens de ônibus privados, c
 - O código de cartão deve ser único para cada passageiro.
 - Um usuário do tipo motorista não pode se inscever em uma rota.
 - Um usuário do tipo admin não pode se inscever em uma rota.
+- Um veículo não pode estar cadastrado na mesma rota e no mesmo turno mais de uma vez.
 
 ## ERD - Diagram de Entidades e Relacionamentos
 
