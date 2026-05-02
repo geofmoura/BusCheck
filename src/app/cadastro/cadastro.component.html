@@ -82,6 +82,38 @@
           <ion-item>
             <ion-label position="floating"></ion-label>
             <ion-input 
+              type="tel" 
+              formControlName="codigo_cartao"
+              placeholder="Digite o Código do Seu Cartão"
+              [clearInput]="true"
+            >
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="cadastroForm.get('codigo_cartao')?.invalid && cadastroForm.get('codigo_cartao')?.touched">
+            <ion-text color="danger" *ngIf="cadastroForm.get('codigo_cartao')?.errors?.['required']">
+              Código do cartão é obrigatório
+            </ion-text>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input 
+              type="tel" 
+              formControlName="faculdade"
+              placeholder="Digite o nome da sua Faculdade"
+              [clearInput]="true"
+            >
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="cadastroForm.get('faculdade')?.invalid && cadastroForm.get('faculdade')?.touched">
+            <ion-text color="danger" *ngIf="cadastroForm.get('faculdade')?.errors?.['required']">
+              Faculdade é obrigatório
+            </ion-text>
+          </div>
+
+          <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input 
               [type]="showPassword ? 'text' : 'password'"
               formControlName="senha"
               placeholder="Digite sua senha">

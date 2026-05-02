@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { IonicModule, ViewWillLeave } from '@ionic/angular'; // CORRIGIDO
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController, IonicModule, LoadingController, ViewWillLeave } from '@ionic/angular'; // CORRIGIDO
 import { Supabase } from '../services/supabase';
-import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cadastro',
@@ -36,7 +35,9 @@ export class CadastroComponent implements OnInit, ViewWillLeave {
       email: ['', [Validators.required, Validators.email]],
       telefone: ['', [Validators.required, Validators.pattern(/^\(\d{2}\) \d{4,5}-\d{4}$/)]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
-      confirmarSenha: ['', [Validators.required]]
+      confirmarSenha: ['', [Validators.required]],
+      codigo_cartao: ['', [Validators.required]],
+      faculdade: ['', [Validators.required]]
     }, { 
       validators: this.senhasCoincidem('senha', 'confirmarSenha')
     });
@@ -133,7 +134,10 @@ export class CadastroComponent implements OnInit, ViewWillLeave {
           nome_completo: this.cadastroForm.get('nome')?.value,
           email: this.cadastroForm.get('email')?.value,
           senha: this.cadastroForm.get('senha')?.value,
-          telefone: this.cadastroForm.get('telefone')?.value
+          telefone: this.cadastroForm.get('telefone')?.value,
+          codigo_cartao: this.cadastroForm.get('codigo_cartao')?.value,
+          faculdade: this.cadastroForm.get('faculdade')?.value,
+          endereco: "Rua das Flores, 123 - Centro"
         };
 
         const resultado = await this.supabase.cadastrarUsuario(passageiro);

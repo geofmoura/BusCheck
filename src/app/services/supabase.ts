@@ -7,6 +7,9 @@ export interface Passageiro {
   email: string;
   senha: string;
   telefone: string;
+  codigo_cartao: string;
+  faculdade: string;
+  endereco: string;
 }
 
 @Injectable({
@@ -47,20 +50,25 @@ export class Supabase {
               nome_completo: passageiro.nome_completo,
               email: passageiro.email,
               telefone: passageiro.telefone,
-              tipo: 'PASSAGEIRO'
+              tipo: "PASSAGEIRO"
             }
-          ])
+          ]).select<any, {id: number}>().single();
 
         if (perfilError) throw perfilError;
+
+        console.log(data);
+        // debugger;
 
         const { error: passageiroError } = await this.supabase
           .from('passageiro')
           .insert([{
-            usuario_id: authData.user.id,
-            codigo_cartao: "123456",
-            faculdade: "Estácio"
+            usuario_id: data.id,
+            codigo_cartao: passageiro.codigo_cartao,
+            faculdade: passageiro.faculdade
           }]);
-
+        
+        console.log(passageiroError);
+        debugger;
         if (passageiroError) throw passageiroError;
 
       }
@@ -96,14 +104,17 @@ export class Supabase {
       if (!user) throw new Error('Usuário não autenticado');
 
       const { data, error } = await this.supabase
-        .from('passageiros')
-        .select('*')
+        .from('usuario')
+        .select('*, passageiro(*)')
         .eq('email', user.email)
         .single();
 
+      const adata = {...data, ...data.passageiro}
+      delete adata.passageiro
+
       if (error) throw error;
 
-      return { success: true, data };
+      return { success: true, data: adata };
     } catch (error: any) {
       console.error('Erro ao buscar passageiro:', error);
       return { success: false, error };
