@@ -50,6 +50,7 @@ export class Supabase {
               nome_completo: passageiro.nome_completo,
               email: passageiro.email,
               telefone: passageiro.telefone,
+              endereco: passageiro.endereco,
               tipo: "PASSAGEIRO"
             }
           ]).select<any, {id: number}>().single();
