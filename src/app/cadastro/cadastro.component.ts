@@ -37,7 +37,8 @@ export class CadastroComponent implements OnInit, ViewWillLeave {
       senha: ['', [Validators.required, Validators.minLength(6)]],
       confirmarSenha: ['', [Validators.required]],
       codigo_cartao: ['', [Validators.required]],
-      faculdade: ['', [Validators.required]]
+      faculdade: ['', [Validators.required]],
+      endereco: ['', [Validators.required]]
     }, { 
       validators: this.senhasCoincidem('senha', 'confirmarSenha')
     });
@@ -137,7 +138,7 @@ export class CadastroComponent implements OnInit, ViewWillLeave {
           telefone: this.cadastroForm.get('telefone')?.value,
           codigo_cartao: this.cadastroForm.get('codigo_cartao')?.value,
           faculdade: this.cadastroForm.get('faculdade')?.value,
-          endereco: "Rua das Flores, 123 - Centro"
+          endereco: this.cadastroForm.get('endereco')?.value
         };
 
         const resultado = await this.supabase.cadastrarUsuario(passageiro);
@@ -148,7 +149,7 @@ export class CadastroComponent implements OnInit, ViewWillLeave {
           
           const alert = await this.alertController.create({
             header: 'Sucesso!',
-            message: 'Cadastro realizado com sucesso! Faça seu login.',
+            message: 'Cadastro realizado com sucesso! Acesse o link de validação que emviamos para o seu Email.',
             buttons: [{text: 'OK'}]
           });
           await alert.present();
