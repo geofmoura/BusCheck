@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
   standalone: false,
 })
-export class AppComponent {
-  constructor() {}
+export class AppComponent implements OnInit{
+  constructor(private platform: Platform) {}
+  
+  async ngOnInit() {
+    await this.platform.ready();
+    try{
+      await StatusBar.setStyle({ style: Style.Dark  });
+      await StatusBar.setOverlaysWebView({ overlay: false }); 
+    } catch (error) {
+      console.log('Erro ao configurar a StatusBar:', error);
+    }
+  }
+
 }
