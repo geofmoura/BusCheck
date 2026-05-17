@@ -38,7 +38,7 @@ CREATE TABLE rota (
         ON DELETE CASCADE,
 
     CONSTRAINT uq_veiculo_turno
-        UNIQUE (codigo_veiculo, turno, data_inicio);
+        UNIQUE (codigo_veiculo, turno);
 );
 
 -- Tabela de associação passageiro-rota

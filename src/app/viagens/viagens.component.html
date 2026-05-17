@@ -67,58 +67,36 @@
   </ion-card>
 
   <!-- Viagens -->
-  <h2 class="secao-titulo">Minhas Viagens de Hoje</h2>
+  <h2 class="secao-titulo">Minhas Rotas</h2>
 
-  <ion-card class="viagem-card">
-    <ion-card-content>
-      <div class="viagem-header">
-        <div class="viagem-rota">
-          <ion-icon name="bus-outline"></ion-icon>
-          <span class="rota-texto">Interior → São Paulo (Zona Oeste)</span>
-        </div>
-        <ion-badge class="badge-embarcado">
-          <ion-icon name="checkmark-circle-outline"></ion-icon>
-          Embarcado
-        </ion-badge>
-      </div>
-      <p class="motorista">Motorista: Roberto Carvalho</p>
-      <div class="viagem-info">
-        <span class="info-item">
-          <ion-icon name="time-outline"></ion-icon>
-          Partida: 06:00
-        </span>
-        <span class="info-item">
-          <ion-icon name="location-outline"></ion-icon>
-          Rua das Flores, 123 - Centro
-        </span>
-      </div>
-      <div class="viagem-status">
-        <ion-icon name="checkbox-outline"></ion-icon>
-        <span>Você está embarcado! Boa viagem!</span>
-      </div>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card class="viagem-card">
-    <ion-card-content>
-      <div class="viagem-header">
-        <div class="viagem-rota">
-          <ion-icon name="bus-outline"></ion-icon>
-          <span class="rota-texto">São Paulo → Interior (Retorno)</span>
-        </div>
-      </div>
-      <p class="motorista">Motorista: Roberto Carvalho</p>
-      <div class="viagem-info">
-        <span class="info-item">
-          <ion-icon name="time-outline"></ion-icon>
-          Partida: 13:30
-        </span>
-        <span class="info-item">
-          <ion-icon name="location-outline"></ion-icon>
-          Rua das Flores, 123 - Centro
-        </span>
-      </div>
-    </ion-card-content>
-  </ion-card>
+  @if (rotas.length > 0) {
+    @for (rota of rotas; track rota.id) {
+        <ion-card class="viagem-card">
+          <ion-card-content>
+            <div class="viagem-header">
+              <div class="viagem-rota">
+                <ion-icon name="bus-outline"></ion-icon>
+                <span class="rota-texto">{{rota.descricao}}</span>
+              </div>
+              <!-- <ion-badge class="badge-embarcado">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                Embarcado
+              </ion-badge> -->
+            </div>
+            <p class="motorista">Motorista: {{rota.motorista.nome_completo}} </p>
+            <!-- <div class="viagem-status">
+              <ion-icon name="checkbox-outline"></ion-icon>
+              <span>Você está embarcado! Boa viagem!</span>
+            </div> -->
+          </ion-card-content>
+        </ion-card>
+    }
+  } @else {
+    <ion-card class="viagem-card">
+      <ion-card-content>
+        <p class="sem-rotas">Nenhuma rota encontrada.</p>
+      </ion-card-content>
+    </ion-card>
+  }
 
 </ion-content>
