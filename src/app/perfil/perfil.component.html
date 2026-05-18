@@ -1,0 +1,87 @@
+<ion-content>
+
+  <ion-toolbar class="toolbar-perfil">
+    <ion-title class="toolbar-title">
+      <div class="toolbar-content">
+        <span class="toolbar-app-name">BusCheck</span>
+        <span class="toolbar-subtitle" *ngIf="passageiro">Olá, {{ passageiro.nome_completo }}</span>
+      </div>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="voltar()">
+        <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div class="ion-padding">
+    
+    <div class="perfil-hero">
+      <div class="perfil-avatar">
+        <ion-icon name="person-outline"></ion-icon>
+      </div>
+      <h2 class="perfil-nome" *ngIf="passageiro">{{ passageiro.nome_completo }}</h2>
+      <p class="perfil-universidade" *ngIf="passageiro">{{ passageiro.faculdade }}</p>
+    </div>
+
+    <!-- Card de informações -->
+    <ion-card class="info-card" *ngIf="passageiro">
+      <ion-card-content>
+
+        <h3 class="secao-titulo">Meu Perfil</h3>
+
+        <div class="info-item">
+          <span class="info-label">Email</span>
+          <div class="info-valor-row">
+            <ion-icon name="mail-outline" class="info-icon"></ion-icon>
+            <span class="info-valor">{{ passageiro.email }}</span>
+          </div>
+        </div>
+
+        <div class="info-divider"></div>
+
+        <div class="info-item">
+          <span class="info-label">Telefone</span>
+          <div class="info-valor-row">
+            <ion-icon name="call-outline" class="info-icon"></ion-icon>
+            <span class="info-valor">{{ passageiro.telefone }}</span>
+          </div>
+        </div>
+
+        <div class="info-divider"></div>
+
+        <div class="info-item">
+          <span class="info-label">Universidade</span>
+          <div class="info-valor-row">
+            <ion-icon name="school-outline" class="info-icon"></ion-icon>
+            <span class="info-valor">{{ passageiro.faculdade }}</span>
+          </div>
+        </div>
+
+        <div class="info-divider"></div>
+
+        <div class="info-item">
+          <span class="info-label">Endereço de Embarque</span>
+          <div class="info-valor-row">
+            <ion-icon name="location-outline" class="info-icon"></ion-icon>
+            <span class="info-valor">{{ passageiro.endereco }}</span>
+          </div>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Skeleton enquanto carrega -->
+    <ion-card class="info-card" *ngIf="!passageiro">
+      <ion-card-content>
+        <ion-skeleton-text animated style="width: 40%; height: 16px; margin-bottom: 16px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 80%; height: 14px; margin-bottom: 12px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 60%; height: 14px; margin-bottom: 12px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 70%; height: 14px; margin-bottom: 12px;"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 90%; height: 14px;"></ion-skeleton-text>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+</ion-content>

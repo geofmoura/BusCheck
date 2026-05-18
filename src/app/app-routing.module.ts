@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./cadastrarviagem/cadastrarviagem.module').then(m => m.CadastrarViagemModule)
   },
   {
+    path: 'perfil',
+    loadChildren: () => import('./perfil/perfil.module').then(m => m.PerfilModule)
+  },
+  {
   path: 'motorista',
   loadChildren: () =>
     import('./motorista/motorista.module')
