@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Router } from '@angular/router';
 import { AlertController, IonicModule, LoadingController, ViewWillLeave } from '@ionic/angular'; // CORRIGIDO
 import { Supabase } from '../services/supabase';
+import { PassageiroCreateDTO } from '../services/types';
 
 @Component({
   selector: 'app-cadastro',
@@ -131,14 +132,15 @@ export class CadastroComponent implements OnInit, ViewWillLeave {
       await loading.present();
 
       try {
-        const passageiro = {
+        const passageiro: PassageiroCreateDTO = {
           nome_completo: this.cadastroForm.get('nome')?.value,
           email: this.cadastroForm.get('email')?.value,
           senha: this.cadastroForm.get('senha')?.value,
           telefone: this.cadastroForm.get('telefone')?.value,
           codigo_cartao: this.cadastroForm.get('codigo_cartao')?.value,
           faculdade: this.cadastroForm.get('faculdade')?.value,
-          endereco: this.cadastroForm.get('endereco')?.value
+          endereco: this.cadastroForm.get('endereco')?.value,
+          tipo: 'PASSAGEIRO'
         };
 
         const resultado = await this.supabase.cadastrarUsuario(passageiro);

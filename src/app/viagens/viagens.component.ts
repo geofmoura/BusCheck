@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { IonicModule, MenuController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router';
-import { Supabase, Passageiro } from '../services/supabase';
+import { Router, RouterModule } from '@angular/router';
+import { IonicModule, MenuController } from '@ionic/angular';
+import { Supabase } from '../services/supabase';
 import { TemaService } from '../services/tema.service';
+import { Passageiro, Rota } from '../services/types';
 
 @Component({
   selector: 'app-viagens',
@@ -22,6 +23,7 @@ export class ViagensComponent implements OnInit {
 
   passageiro: Passageiro | null = null;
   modoNoturnoAtivo = false;
+  rotas: Rota[] = []
 
   constructor(
     private menuCtrl: MenuController,
@@ -37,9 +39,14 @@ export class ViagensComponent implements OnInit {
 
   async ngOnInit() {
     const resultado = await this.supabase.getPassageiroAtual();
-    if (resultado.success) {
-      this.passageiro = resultado.data;
-    }
+    if (!resultado.success) return
+    this.passageiro = resultado.data;
+
+    const rotas = await this.supabase.getRotasByUserId(this.passageiro.id, this.passageiro.tipo);
+    if (!rotas.success) return
+    this.rotas = rotas.data
+    console.log(this.rotas)
+
   }
 
   fecharMenu() {
