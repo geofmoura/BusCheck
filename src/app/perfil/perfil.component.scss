@@ -1,0 +1,177 @@
+:host {
+  --ion-background-color: var(--app-bg);
+  background-color: var(--app-bg);
+}
+
+ion-content {
+  --padding-top: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+// ─── Menu ───
+
+ion-menu {
+  --width: 50%;
+}
+
+ion-menu::part(container) {
+  border: none;
+  box-shadow: none;
+}
+
+.menu-toolbar {
+  --background: #3880ff;
+  --color: white;
+  box-shadow: none;
+  border: none;
+}
+
+.menu-content {
+  --background: var(--app-card-bg);
+}
+
+ion-menu ion-list {
+  background: var(--app-card-bg);
+  padding-top: 8px;
+}
+
+ion-menu ion-item {
+  --background: var(--app-card-bg);
+  --color: var(--app-text);
+  --inner-border-width: 0;
+  --border-width: 0;
+}
+
+ion-menu ion-icon {
+  color: var(--app-text);
+}
+
+// ─── Toolbar ───
+
+ion-toolbar.toolbar-perfil {
+  --background: #3880ff;
+  --color: white;
+  --min-height: 70px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.toolbar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.toolbar-app-name {
+  font-size: 1.1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.toolbar-subtitle {
+  font-size: 0.8rem;
+  color: white;
+  font-weight: normal;
+}
+
+ion-title.toolbar-title {
+  padding-left: 16px;
+  text-align: left;
+  font-weight: normal;
+}
+
+ion-menu-button {
+  --color: white;
+}
+
+// ─── Hero / Avatar ───
+
+.perfil-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0 16px;
+}
+
+.perfil-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #3880ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+
+  ion-icon {
+    font-size: 40px;
+    color: white;
+  }
+}
+
+.perfil-nome {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--app-text);
+  margin: 0 0 4px;
+  text-align: center;
+}
+
+.perfil-universidade {
+  font-size: 0.85rem;
+  color: var(--app-text-muted);
+  margin: 0;
+  text-align: center;
+}
+
+// ─── Card de informações ───
+
+.info-card {
+  border-radius: 12px;
+  --background: var(--app-card-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.secao-titulo {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--app-text);
+  margin: 0 0 16px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+}
+
+.info-valor-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-icon {
+  font-size: 16px;
+  color: #3880ff;
+  flex-shrink: 0;
+}
+
+.info-valor {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--app-text);
+}
+
+.info-divider {
+  height: 1px;
+  background: var(--app-border);
+  margin: 4px 0;
+}
