@@ -392,16 +392,20 @@ ion-buttons ion-button {
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   background: var(--ion-color-white, #ffffff);
-  border-left: 4px solid transparent; // Borda invisível por padrão para evitar que o card "pule"
+  border-left: 4px solid transparent;
   transition: all 0.3s ease;
 
-  // Estilos aplicados quando a sua expressão for VERDADEIRA
   &.is-subscribed {
-    border-left-color: var(--ion-color-success, #2dd36f); // Borda verde discreta na lateral
-    background: #fafdff; // Um fundo ligeiramente diferente para destacar
+    border-left-color: var(--ion-color-success, #2dd36f);
+    background: #fafdff;
+
+    // Se quiser dar um destaque sutil no número do ônibus quando estiver inscrito
+    .card-actions .bus-number {
+      color: #4a4a4a;
+    }
 
     .driver-info ion-icon {
-      color: var(--ion-color-success, #2dd36f); // Ícone do motorista fica verde
+      color: var(--ion-color-success, #2dd36f);
     }
   }
 
@@ -439,11 +443,19 @@ ion-buttons ion-button {
 
     .card-actions {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between; // Joga o ônibus para a esquerda e o botão para a direita
+      align-items: center; // Centraliza verticalmente o texto e o botão
       border-top: 1px solid #f0f0f0;
       padding-top: 8px;
 
-      // Botão para se inscrever
+      // Estilização do número do ônibus
+      .bus-number {
+        font-size: 0.85rem;
+        color: #8a8a8a;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+      }
+
       .btn-subscribe {
         --color: var(--ion-color-primary);
         font-weight: 600;
@@ -452,16 +464,15 @@ ion-buttons ion-button {
         margin: 0;
       }
 
-      // Botão quando já está inscrito (mais suave, indicando que pode sair)
       .btn-unsubscribe {
-        --color: var(--ion-color-medium, #92949c); // Cor cinza discreta para não berrar "perigo"
+        --color: var(--ion-color-medium, #92949c);
         font-weight: 500;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         margin: 0;
 
         &:hover {
-          --color: var(--ion-color-danger, #eb445a); // Só fica vermelho se o usuário passar o mouse/interagir
+          --color: var(--ion-color-danger, #eb445a);
         }
       }
     }
