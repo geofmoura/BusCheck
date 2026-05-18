@@ -46,25 +46,33 @@
 
   @if (rotas.length > 0) {
     @for (rota of rotas; track rota.id) {
-        <ion-card class="viagem-card">
-          <ion-card-content>
-            <div class="viagem-header">
-              <div class="viagem-rota">
-                <ion-icon name="bus-outline"></ion-icon>
-                <span class="rota-texto">{{rota.descricao}}</span>
-              </div>
-              <!-- <ion-badge class="badge-embarcado">
+      <ion-card class="travel-card" [class.is-subscribed]="false">
+        <ion-card-header>
+          <ion-card-title>Goiana - Manhã</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <div class="driver-info">
+            <ion-icon [name]="false ? 'checkmark-done-circle' : 'person-outline'" aria-hidden="true"></ion-icon>
+            <p>Motorista: <span>Leandro Santos</span></p>
+          </div>
+
+          <div class="card-actions">
+            <span class="bus-number">Ônibus: {{rota.codigo_veiculo}} </span>
+            @if (rota.id == 20) {
+              <ion-badge class="badge-embarcado">
                 <ion-icon name="checkmark-circle-outline"></ion-icon>
                 Embarcado
-              </ion-badge> -->
-            </div>
-            <p class="motorista">Motorista: {{rota.motorista.nome_completo}} </p>
-            <!-- <div class="viagem-status">
-              <ion-icon name="checkbox-outline"></ion-icon>
-              <span>Você está embarcado! Boa viagem!</span>
-            </div> -->
-          </ion-card-content>
-        </ion-card>
+              </ion-badge>
+            } @else {
+              <ion-badge class="badge-naoembarcado">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                Pendente Check-in {{rota.id == 21?"Volta": "Ida"}}
+              </ion-badge>
+            }
+          </div>
+        </ion-card-content>
+      </ion-card>
     }
   } @else {
     <ion-card class="viagem-card">

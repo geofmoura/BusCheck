@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
   async ngOnInit() {
     await this.platform.ready();
     try{
-      await StatusBar.setStyle({ style: Style.Dark  });
+      await StatusBar.setStyle({ style: Style.Default  });
       await StatusBar.setOverlaysWebView({ overlay: false }); 
     } catch (error) {
       console.log('Erro ao configurar a StatusBar:', error);
