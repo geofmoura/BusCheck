@@ -50,15 +50,16 @@
           <ion-card-content>
             <div class="viagem-header">
               <div class="viagem-rota">
-                <ion-icon name="bus-outline"></ion-icon>
-                <span class="rota-texto">{{rota.descricao}}</span>
+                <span class="rota-texto">
+                  <strong>Interior</strong> → <strong>{{rota.descricao}}</strong>
+                </span>
               </div>
-              <!-- <ion-badge class="badge-embarcado">
-                <ion-icon name="checkmark-circle-outline"></ion-icon>
-                Embarcado
-              </ion-badge> -->
             </div>
-            <p class="motorista">Motorista: {{rota.motorista.nome_completo}} </p>
+
+            <div class="motorista-info">
+              <ion-icon name="person-outline"></ion-icon>
+              <span>Motorista: <strong>{{rota.motorista.nome_completo}}</strong></span>
+            </div>
             <!-- <div class="viagem-status">
               <ion-icon name="checkbox-outline"></ion-icon>
               <span>Você está embarcado! Boa viagem!</span>

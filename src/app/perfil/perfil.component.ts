@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router';
-import { Supabase, Passageiro } from '../services/supabase';
+import { Router, RouterModule } from '@angular/router';
+import { IonicModule } from '@ionic/angular';
+import { Supabase } from '../services/supabase';
+import { Passageiro } from '../services/types';
 
 @Component({
   selector: 'app-perfil',

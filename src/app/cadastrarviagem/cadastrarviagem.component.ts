@@ -4,20 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { Supabase } from '../services/supabase';
-import { Passageiro } from '../services/types';
-
-export interface ViagemInscrita {
-  id: string;
-  origem: string;
-  destino: string;
-  dataPartida: string;
-  horario: string;
-  motorista: string;
-  enderecoEmbarque?: string;
-  enderecoDesembarque?: string;
-  tipo: 'ida' | 'volta';
-  status: 'confirmada' | 'embarcado';
-}
+import { Passageiro, Rota } from '../services/types';
 
 @Component({
   selector: 'app-cadastrarviagem',
@@ -33,11 +20,9 @@ export interface ViagemInscrita {
 export class CadastrarViagemComponent implements OnInit {
 
   passageiro: Passageiro | null = null;
-  viagensDisponiveis: any[] = [];
+  viagensDisponiveis: Rota[] = [];
   viagensInscritas: any[] = [];
   activeTab: 'disponiveis' | 'minhas' = 'disponiveis';
-  enderecoEmbarqueIda: string = '';
-  enderecoDesembarqueVolta: string = '';
 
   constructor(
     private router: Router,
@@ -45,55 +30,34 @@ export class CadastrarViagemComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    this.carregarViagens();
     const resultado = await this.supabase.getPassageiroAtual();
-    if (resultado.success) {
-      this.passageiro = resultado.data;
-    }
+    if (!resultado.success) return
+    this.passageiro = resultado.data;
+    
+    const routes = await this.supabase.getRotasByUserId(this.passageiro.id, 'PASSAGEIRO')
+    if (!routes.success) return
+    this.viagensInscritas  = routes.data
+
+    await this.carregarViagens();
   }
 
-  carregarViagens() {
-    this.viagensDisponiveis = [];
-    this.viagensInscritas = [];
+  async carregarViagens() {
+    const rotas = await this.supabase.getAllRotas()
+    if(!rotas.success) return
+    this.viagensDisponiveis = rotas.data
+    
   }
 
-  confirmarInscricaoIda() {
-    const viagemInscrita: ViagemInscrita = {
-      id: 'ida-' + Date.now(),
-      origem: 'Interior',
-      destino: 'São Paulo (Zona Oeste)',
-      dataPartida: new Date().toISOString().split('T')[0],
-      horario: '06:00',
-      motorista: 'Roberto Carvalho',
-      enderecoEmbarque: this.enderecoEmbarqueIda,
-      tipo: 'ida',
-      status: 'confirmada'
-    };
-
-    this.salvarViagem(viagemInscrita);
-    alert('Viagem de IDA confirmada com sucesso!');
-    this.enderecoEmbarqueIda = '';
+  isSubiscribe(id: number){
+    if(this.viagensInscritas.find(item => item.id == id)) return true
+    return false
   }
 
-  confirmarInscricaoVolta() {
-    const viagemInscrita: ViagemInscrita = {
-      id: 'volta-' + Date.now(),
-      origem: 'São Paulo (Zona Oeste)',
-      destino: 'Interior',
-      dataPartida: new Date().toISOString().split('T')[0],
-      horario: '13:30',
-      motorista: 'Roberto Carvalho',
-      enderecoDesembarque: this.enderecoDesembarqueVolta,
-      tipo: 'volta',
-      status: 'confirmada'
-    };
+  confirmarInscricaoIda() {}
 
-    this.salvarViagem(viagemInscrita);
-    alert('Viagem de VOLTA confirmada com sucesso!');
-    this.enderecoDesembarqueVolta = '';
-  }
+  confirmarInscricaoVolta() {}
 
-  private salvarViagem(viagem: ViagemInscrita) {
+  private salvarViagem(viagem: Rota) {
     const viagensSalvas = JSON.parse(localStorage.getItem('viagensInscritas') || '[]');
     viagensSalvas.push(viagem);
     localStorage.setItem('viagensInscritas', JSON.stringify(viagensSalvas));

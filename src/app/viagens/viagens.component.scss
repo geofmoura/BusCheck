@@ -123,6 +123,21 @@ ion-card-title {
   gap: 8px;
 }
 
+.motorista-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  margin-bottom: 16px;
+  color: var(--app-text-secondary);
+  border-bottom: 1px solid var(--app-border);
+  font-size: 0.95rem;
+
+  ion-icon {
+    color: var(--ion-color-primary);
+  }
+}
+
 .viagem-rota {
   display: flex;
   align-items: center;

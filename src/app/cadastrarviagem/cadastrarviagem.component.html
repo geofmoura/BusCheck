@@ -21,10 +21,10 @@
         <div class="banner-content">
           <ion-icon name="person-circle-outline" color="primary" class="banner-icon"></ion-icon>
           <div>
-            <p class="banner-titulo">Inscreva-se nas viagens que você deseja utilizar</p>
+            <p class="banner-titulo">Inscreva-se nas rotas que você deseja utilizar</p>
             <p class="banner-descricao">
-              Você pode se inscrever em múltiplas viagens. No dia da viagem, confirme
-              sua presença e esteja pronto para embarcar em até 8 minutos.
+              Você pode se inscrever em múltiplas rotas. No dia da viagem, confirme
+              sua presença.
             </p>
           </div>
         </div>
@@ -34,112 +34,54 @@
     <div class="contadores">
       <div class="contador-item">
         <span class="contador-numero">{{ totalInscritas }}</span>
-        <span class="contador-label">Viagens Inscritas</span>
+        <span class="contador-label">Rotas Inscritas</span>
       </div>
       <div class="contador-item">
         <span class="contador-numero">{{ totalDisponiveis }}</span>
-        <span class="contador-label">Viagens Disponíveis</span>
+        <span class="contador-label">Rotas Disponíveis</span>
       </div>
     </div>
 
     <h2 class="secao-titulo">Escolha suas Viagens</h2>
 
-    <ion-card class="viagem-card">
-      <ion-card-content>
-        <div class="viagem-header">
-          <div class="viagem-rota">
-            <span class="rota-texto">
-              <strong>Interior</strong> → <strong>São Paulo (Zona Oeste)</strong>
-            </span>
-          </div>
-        </div>
+    @if (viagensDisponiveis.length > 0) {
+      @for (rota of viagensDisponiveis; track rota.id) {
+        <ion-card class="travel-card" [class.is-subscribed]="isSubiscribe(rota.id)">
+          <ion-card-header>
+            <ion-card-title>Goiana - Manhã</ion-card-title>
+          </ion-card-header>
 
-        <div class="viagem-info">
-          <div class="info-item">
-            <ion-icon name="time-outline"></ion-icon>
-            <span>06:00</span>
-          </div>
-        </div>
+          <ion-card-content>
+            <div class="driver-info">
+              <ion-icon [name]="isSubiscribe(rota.id) ? 'checkmark-done-circle' : 'person-outline'" aria-hidden="true"></ion-icon>
+              <p>Motorista: <span>Leandro Santos</span></p>
+            </div>
 
-        <div class="motorista-info">
-          <ion-icon name="person-outline"></ion-icon>
-          <span>Motorista: <strong>Roberto Carvalho</strong></span>
-        </div>
+            <div class="card-actions">
+              @if (isSubiscribe(rota.id)) {
+                <ion-button fill="clear" size="small" class="btn-unsubscribe">
+                  <ion-icon slot="start" name="close-circle-outline"></ion-icon>
+                  Cancelar Inscrição
+                </ion-button>
+              } @else {
+                <ion-button fill="clear" size="small" class="btn-subscribe">
+                  <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+                  Inscrever-se
+                </ion-button>
+              }
+            </div>
+          </ion-card-content>
+        </ion-card>
+      }
+    } @else {
+      <ion-card class="viagem-card">
+        <ion-card-content>
+          <p class="sem-rotas">Nenhuma rota encontrada.</p>
+        </ion-card-content>
+      </ion-card>
+    }
 
-        <div class="campo-endereco">
-          <label>
-            <ion-icon name="location-outline"></ion-icon>
-            Endereço de Embarque
-          </label>
-          <input 
-            type="text" 
-            [(ngModel)]="enderecoEmbarqueIda" 
-            placeholder="Digite o endereço de embarque"
-            class="endereco-input"
-          >
-        </div>
 
-        <ion-button 
-          expand="block" 
-          class="botao-confirmar"
-          (click)="confirmarInscricaoIda()"
-          [disabled]="!enderecoEmbarqueIda"
-        >
-          <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
-          Confirmar Inscrição
-        </ion-button>
-
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="viagem-card">
-      <ion-card-content>
-
-        <div class="viagem-header">
-          <div class="viagem-rota">
-            <span class="rota-texto">
-              <strong>São Paulo (Zona Oeste)</strong> → <strong>Interior</strong>
-            </span>
-          </div>
-        </div>
-
-        <div class="viagem-info">
-          <div class="info-item">
-            <ion-icon name="time-outline"></ion-icon>
-            <span>13:30</span>
-          </div>
-        </div>
-
-        <div class="motorista-info">
-          <ion-icon name="person-outline"></ion-icon>
-          <span>Motorista: <strong>Roberto Carvalho</strong></span>
-        </div>
-
-        <div class="campo-endereco">
-          <label>
-            <ion-icon name="flag-outline"></ion-icon>
-            Endereço de Desembarque
-          </label>
-          <input 
-            type="text" 
-            [(ngModel)]="enderecoDesembarqueVolta" 
-            placeholder="Digite o endereço de desembarque"
-            class="endereco-input"
-          >
-        </div>
-
-        <ion-button 
-          expand="block" 
-          class="botao-confirmar"
-          (click)="confirmarInscricaoVolta()"
-          [disabled]="!enderecoDesembarqueVolta"
-        >
-          <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
-          Confirmar Inscrição
-        </ion-button>
-
-      </ion-card-content>
-    </ion-card>
     <ion-card class="info-card">
       <ion-card-header>
         <ion-card-title>

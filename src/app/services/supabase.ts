@@ -151,6 +151,27 @@ export class Supabase {
     }
   }
 
+  async getAllRotas(): AsyncResult<Rota[]> {                                                                            
+    try {                                                                                                               
+      const { data, error } = await this.supabase                                                                       
+        .from('rota')                                                                                                   
+        .select<any, Rota>('*, usuario!motorista_id(*)');                                                               
+                                                                                                                        
+      if (error) throw error;                                                                                           
+                                                                                                                        
+      const rotas = data.map(item => {                                                                                  
+        item.motorista = (item as any).usuario;
+        delete (item as any).usuario;                                                                                   
+        return item;                                                                                                    
+      });                                                                                                               
+                                                                                                                        
+      return { success: true, data: rotas };                                                                            
+    } catch (error: any) {                                                                                              
+      console.error('Erro ao buscar todas as rotas:', error);                                                           
+      return { success: false, error };                                                                                 
+    }                                                                                                                   
+  }    
+
   // Logout
   async logout() {
     try {
