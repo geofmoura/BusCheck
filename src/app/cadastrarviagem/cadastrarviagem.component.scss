@@ -1,7 +1,12 @@
 :host {
   --ion-background-color: var(--app-bg);
-  background-color: var(--app-bg);
 }
+
+ion-content {
+  --padding-top: 0;
+}
+
+// ─── Toolbar ───
 
 ion-toolbar {
   --background: #3880ff;
@@ -18,6 +23,7 @@ ion-toolbar {
 
 .toolbar-app-name {
   font-size: 1.1rem;
+  font-weight: bold;
   color: white;
 }
 
@@ -33,203 +39,228 @@ ion-title.toolbar-title {
   font-weight: normal;
 }
 
-ion-card-title {
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: var(--app-text);
-}
-
-ion-buttons ion-button {
+ion-button {
   --color: white;
 }
 
-.secao-titulo {
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 16px 0 8px;
-  color: var(--app-text);
-}
+// ─── Banner ───
 
 .banner-card {
   border-radius: 12px;
-  margin-bottom: 16px;
   --background: var(--app-card-bg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-  .banner-content {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-  }
-
-  .banner-icon {
-    font-size: 36px;
-    flex-shrink: 0;
-  }
-
-  .banner-titulo {
-    font-weight: 600;
-    font-size: 15px;
-    margin-bottom: 4px;
-    color: var(--app-text);
-  }
-
-  .banner-descricao {
-    font-size: 13px;
-    color: var(--app-text-muted);
-  }
+  margin-bottom: 16px;
 }
+
+.banner-content {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.banner-icon {
+  font-size: 36px;
+  flex-shrink: 0;
+}
+
+.banner-titulo {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--app-text);
+  margin: 0 0 4px;
+}
+
+.banner-descricao {
+  font-size: 0.8rem;
+  color: var(--app-text-muted);
+  margin: 0;
+}
+
+// ─── Contadores ───
 
 .contadores {
   display: flex;
   gap: 12px;
   margin-bottom: 20px;
-
-  .contador-item {
-    flex: 1;
-    border: 1px solid var(--app-border);
-    border-radius: 10px;
-    padding: 16px 8px;
-    text-align: center;
-    background: var(--app-card-bg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .contador-numero {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--app-text);
-  }
-
-  .contador-label {
-    font-size: 12px;
-    color: var(--app-text-muted);
-  }
 }
+
+.contador-item {
+  flex: 1;
+  background: var(--app-card-bg);
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.contador-numero {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #3880ff;
+}
+
+.contador-label {
+  font-size: 0.75rem;
+  color: var(--app-text-muted);
+  text-align: center;
+}
+
+// ─── Seção título ───
+
+.secao-titulo {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--app-text);
+  margin: 0 0 12px;
+}
+
+// ─── Card de rota ───
 
 .viagem-card {
-  margin: 0 0 16px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --background: var(--app-card-bg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+  border-left: 4px solid transparent;
+  transition: border-color 0.2s;
 }
+
+.card-selecionado {
+  border-left-color: #3880ff;
+}
+
+.card-inscrito {
+  border-left-color: #2e7d32;
+}
+
+// ─── Header da rota ───
 
 .viagem-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  cursor: pointer;
   margin-bottom: 4px;
-  gap: 8px;
 }
 
 .viagem-rota {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: bold;
-  font-size: 1rem;
-  color: var(--app-text);
-  flex: 1;
+
+  ion-icon {
+    font-size: 18px;
+    color: #3880ff;
+  }
 }
 
 .rota-texto {
-  flex: 1;
-  font-size: 1.05rem;
-}
-
-.viagem-info {
-  display: flex;
-  gap: 24px;
-  margin-bottom: 12px;
-  color: var(--app-text-secondary);
   font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--app-text);
 }
 
-.info-item {
+.rota-badges {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.motorista-info {
+.badge-turno {
+  background: rgba(56, 128, 255, 0.15);
+  color: #3880ff;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+}
+
+.badge-inscrito {
   display: flex;
   align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+.check-icon {
+  font-size: 22px;
+  color: var(--app-text-muted);
+}
+
+.check-ativo {
+  color: #3880ff;
+}
+
+// ─── Dias da semana ───
+
+.dias-container {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--app-border);
+}
+
+.dias-titulo {
+  font-size: 0.8rem;
+  color: var(--app-text-muted);
+  margin: 0 0 10px;
+}
+
+.dias-grid {
+  display: flex;
   gap: 8px;
-  padding: 8px 0;
-  margin-bottom: 16px;
-  color: var(--app-text-secondary);
-  border-bottom: 1px solid var(--app-border);
-  font-size: 0.95rem;
-
-  ion-icon {
-    color: var(--ion-color-primary);
-  }
+  flex-wrap: wrap;
 }
 
-.campo-endereco {
-  margin-bottom: 20px;
-
-  label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--app-text);
-
-    ion-icon {
-      color: var(--ion-color-primary);
-      font-size: 1.1rem;
-    }
-  }
-
-  .endereco-input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid var(--app-border);
-    border-radius: 8px;
-    font-size: 0.95rem;
-    background: var(--app-card-bg);
-    color: var(--app-text);
-    transition: border-color 0.2s;
-
-    &:focus {
-      outline: none;
-      border-color: var(--ion-color-primary);
-    }
-
-    &::placeholder {
-      color: var(--app-text-muted);
-    }
-  }
+.dia-btn {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--app-border);
+  background: transparent;
+  color: var(--app-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
 }
+
+.dia-ativo {
+  background: #3880ff;
+  color: white;
+  border-color: #3880ff;
+}
+
+.dia-readonly {
+  cursor: default;
+  opacity: 0.85;
+}
+
+// ─── Botão confirmar ───
 
 .botao-confirmar {
-  margin-top: 4px;
-  --border-radius: 8px;
+  --background: #3880ff;
+  --border-radius: 10px;
+  margin: 8px 0 16px;
   font-weight: 600;
-  height: 48px;
-  --background: var(--ion-color-primary);
-  --background-activated: var(--ion-color-primary-shade);
-  --background-disabled: var(--ion-color-medium-tint);
 }
+
+// ─── Info card ───
 
 .info-card {
   border-radius: 12px;
   --background: var(--app-card-bg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 8px;
+  margin-bottom: 24px;
+}
 
-  ion-card-title {
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+ion-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: var(--app-text);
 }
 
 .info-lista {
@@ -238,243 +269,23 @@ ion-buttons ion-button {
   margin: 0;
 
   li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
     padding: 6px 0;
-    font-size: 13px;
-    color: var(--app-text-secondary);
+    font-size: 0.85rem;
+    color: var(--app-text);
+    border-bottom: 1px solid var(--app-border);
+
+    &:last-child {
+      border-bottom: none;
+    }
 
     &::before {
-      content: '• ';
+      content: '•';
       color: #3880ff;
-    }
-  }
-}
-
-.sem-dados {
-  text-align: center;
-  color: var(--app-text-muted);
-  margin-top: 32px;
-  font-size: 14px;
-}
-
-.viagem-disponivel-exemplo {
-  border: 2px solid var(--ion-color-primary);
-  margin-bottom: 24px;
-  position: relative;
-  overflow: visible;
-
-  &::before {
-    content: 'EXEMPLO';
-    position: absolute;
-    top: -10px;
-    right: 16px;
-    background: var(--ion-color-primary);
-    color: white;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 2px 8px;
-    border-radius: 12px;
-    letter-spacing: 0.5px;
-  }
-}
-
-.viagem-header-exemplo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-
-  .rota-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--app-text);
-  }
-
-  .rota-origem, .rota-destino {
-    color: var(--app-text);
-  }
-
-  .rota-seta {
-    color: var(--ion-color-primary);
-    font-size: 1.2rem;
-  }
-
-  .horario-badge {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background: var(--ion-color-primary-tint);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-
-    ion-icon {
-      font-size: 1rem;
-    }
-  }
-}
-
-.motorista-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 0;
-  margin-bottom: 16px;
-  color: var(--app-text-secondary);
-  border-bottom: 1px solid var(--app-border);
-  font-size: 0.95rem;
-
-  ion-icon {
-    color: var(--ion-color-primary);
-  }
-}
-
-.endereco-campos {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-
-.campo-endereco {
-  label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-bottom: 6px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--app-text);
-
-    ion-icon {
-      color: var(--ion-color-primary);
-    }
-  }
-
-  .endereco-input {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid var(--app-border);
-    border-radius: 8px;
-    font-size: 0.95rem;
-    background: var(--app-card-bg);
-    color: var(--app-text);
-    transition: border-color 0.2s;
-
-    &:focus {
-      outline: none;
-      border-color: var(--ion-color-primary);
-    }
-
-    &::placeholder {
-      color: var(--app-text-muted);
-    }
-  }
-}
-
-.botao-confirmar {
-  margin-top: 8px;
-  --border-radius: 8px;
-  font-weight: 600;
-  height: 48px;
-  --background: var(--ion-color-primary);
-  --background-activated: var(--ion-color-primary-shade);
-  --background-disabled: var(--ion-color-medium-tint);
-}
-
-///Leandro
-.travel-card {
-  margin: 16px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  background: var(--ion-color-white, #ffffff);
-  border-left: 4px solid transparent;
-  transition: all 0.3s ease;
-
-  &.is-subscribed {
-    border-left-color: var(--ion-color-success, #2dd36f);
-    background: #fafdff;
-
-    // Se quiser dar um destaque sutil no número do ônibus quando estiver inscrito
-    .card-actions .bus-number {
-      color: #4a4a4a;
-    }
-
-    .driver-info ion-icon {
-      color: var(--ion-color-success, #2dd36f);
-    }
-  }
-
-  ion-card-header {
-    padding-bottom: 8px;
-
-    ion-card-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #1a1a1a;
-    }
-  }
-
-  ion-card-content {
-    padding-top: 0;
-
-    .driver-info {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #666666;
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-
-      ion-icon {
-        font-size: 1.1rem;
-        color: #8a8a8a;
-      }
-
-      span {
-        font-weight: 600;
-        color: #333333;
-      }
-    }
-
-    .card-actions {
-      display: flex;
-      justify-content: space-between; // Joga o ônibus para a esquerda e o botão para a direita
-      align-items: center; // Centraliza verticalmente o texto e o botão
-      border-top: 1px solid #f0f0f0;
-      padding-top: 8px;
-
-      // Estilização do número do ônibus
-      .bus-number {
-        font-size: 0.85rem;
-        color: #8a8a8a;
-        font-weight: 500;
-        letter-spacing: 0.3px;
-      }
-
-      .btn-subscribe {
-        --color: var(--ion-color-primary);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin: 0;
-      }
-
-      .btn-unsubscribe {
-        --color: var(--ion-color-medium, #92949c);
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin: 0;
-
-        &:hover {
-          --color: var(--ion-color-danger, #eb445a);
-        }
-      }
+      font-weight: bold;
+      flex-shrink: 0;
     }
   }
 }
