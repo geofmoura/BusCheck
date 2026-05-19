@@ -16,15 +16,16 @@
 
   <div class="ion-padding">
 
+    <!-- Banner -->
     <ion-card class="banner-card">
       <ion-card-content>
         <div class="banner-content">
           <ion-icon name="person-circle-outline" color="primary" class="banner-icon"></ion-icon>
           <div>
-            <p class="banner-titulo">Inscreva-se nas viagens que você deseja utilizar</p>
+            <p class="banner-titulo">Inscreva-se nas rotas que você deseja utilizar</p>
             <p class="banner-descricao">
-              Você pode se inscrever em múltiplas viagens. No dia da viagem, confirme
-              sua presença e esteja pronto para embarcar em até 8 minutos.
+              Selecione a rota e os dias da semana que pretende viajar.
+              No dia da viagem, confirme sua presença e embarque em até 8 minutos.
             </p>
           </div>
         </div>
@@ -34,129 +35,126 @@
     <div class="contadores">
       <div class="contador-item">
         <span class="contador-numero">{{ totalInscritas }}</span>
-        <span class="contador-label">Viagens Inscritas</span>
+        <span class="contador-label">Rotas Inscritas</span>
       </div>
       <div class="contador-item">
         <span class="contador-numero">{{ totalDisponiveis }}</span>
-        <span class="contador-label">Viagens Disponíveis</span>
+        <span class="contador-label">Rotas Disponíveis</span>
       </div>
     </div>
 
-    <h2 class="secao-titulo">Escolha suas Viagens</h2>
+    <ng-container *ngIf="carregando">
+      <ion-card *ngFor="let i of [1,2,3]" class="viagem-card">
+        <ion-card-content>
+          <ion-skeleton-text animated style="width: 60%; height: 16px; margin-bottom: 12px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 40%; height: 14px; margin-bottom: 8px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 80%; height: 14px;"></ion-skeleton-text>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
 
-    <ion-card class="viagem-card">
-      <ion-card-content>
-        <div class="viagem-header">
-          <div class="viagem-rota">
-            <span class="rota-texto">
-              <strong>Interior</strong> → <strong>São Paulo (Zona Oeste)</strong>
-            </span>
+    <ng-container *ngIf="!carregando">
+      <h2 class="secao-titulo">Escolha suas Rotas</h2>
+
+      <ion-card
+        *ngFor="let rota of rotas"
+        class="viagem-card"
+        [class.card-selecionado]="rotasSelecionadas[rota.id]"
+        [class.card-inscrito]="jaInscrito(rota.id)">
+
+        <ion-card-content>
+
+          <div class="viagem-header" (click)="toggleRota(rota.id)">
+            <div class="viagem-rota">
+              <ion-icon name="bus-outline"></ion-icon>
+              <span class="rota-texto">{{ rota.descricao }}</span>
+            </div>
+            <div class="rota-badges">
+              <ion-badge class="badge-turno">{{ rota.turno }}</ion-badge>
+              <ion-badge *ngIf="jaInscrito(rota.id)" color="success" class="badge-inscrito">
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
+                Inscrito
+              </ion-badge>
+              
+              <!-- Botão de remover para rotas já inscritas -->
+              <ion-button
+                *ngIf="jaInscrito(rota.id)"
+                fill="clear"
+                color="danger"
+                size="small"
+                (click)="removerInscricao(rota.id); $event.stopPropagation()"
+                [disabled]="removendo === rota.id">
+                <ion-icon [name]="removendo === rota.id ? 'hourglass-outline' : 'trash-outline'" slot="icon-only"></ion-icon>
+              </ion-button>
+              
+              <ion-icon
+                *ngIf="!jaInscrito(rota.id)"
+                [name]="rotasSelecionadas[rota.id] ? 'checkbox-outline' : 'square-outline'"
+                class="check-icon"
+                [class.check-ativo]="rotasSelecionadas[rota.id]">
+              </ion-icon>
+            </div>
           </div>
-        </div>
 
-        <div class="viagem-info">
-          <div class="info-item">
-            <ion-icon name="time-outline"></ion-icon>
-            <span>06:00</span>
+          <!-- Seleção de dias (aparece ao selecionar a rota) -->
+          <div class="dias-container" *ngIf="rotasSelecionadas[rota.id] && !jaInscrito(rota.id)">
+            <p class="dias-titulo">Selecione os dias da semana:</p>
+            <div class="dias-grid">
+              <button
+                *ngFor="let dia of diasSemana"
+                class="dia-btn"
+                [class.dia-ativo]="diasSelecionados[rota.id][dia]"
+                (click)="toggleDia(rota.id, dia)">
+                {{ dia }}
+              </button>
+            </div>
           </div>
-        </div>
 
-        <div class="motorista-info">
-          <ion-icon name="person-outline"></ion-icon>
-          <span>Motorista: <strong>Roberto Carvalho</strong></span>
-        </div>
-
-        <div class="campo-endereco">
-          <label>
-            <ion-icon name="location-outline"></ion-icon>
-            Endereço de Embarque
-          </label>
-          <input 
-            type="text" 
-            [(ngModel)]="enderecoEmbarqueIda" 
-            placeholder="Digite o endereço de embarque"
-            class="endereco-input"
-          >
-        </div>
-
-        <ion-button 
-          expand="block" 
-          class="botao-confirmar"
-          (click)="confirmarInscricaoIda()"
-          [disabled]="!enderecoEmbarqueIda"
-        >
-          <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
-          Confirmar Inscrição
-        </ion-button>
-
-      </ion-card-content>
-    </ion-card>
-
-    <ion-card class="viagem-card">
-      <ion-card-content>
-
-        <div class="viagem-header">
-          <div class="viagem-rota">
-            <span class="rota-texto">
-              <strong>São Paulo (Zona Oeste)</strong> → <strong>Interior</strong>
-            </span>
+          <!-- Dias já inscritos (readonly) -->
+          <div class="dias-container" *ngIf="jaInscrito(rota.id)">
+            <p class="dias-titulo">Dias inscritos:</p>
+            <div class="dias-grid">
+              <span
+                *ngFor="let dia of diasSemana"
+                class="dia-btn"
+                [class.dia-ativo]="diasSelecionados[rota.id][dia]"
+                [class.dia-readonly]="true">
+                {{ dia }}
+              </span>
+            </div>
           </div>
-        </div>
 
-        <div class="viagem-info">
-          <div class="info-item">
-            <ion-icon name="time-outline"></ion-icon>
-            <span>13:30</span>
-          </div>
-        </div>
+        </ion-card-content>
+      </ion-card>
 
-        <div class="motorista-info">
-          <ion-icon name="person-outline"></ion-icon>
-          <span>Motorista: <strong>Roberto Carvalho</strong></span>
-        </div>
+      <ion-button
+        expand="block"
+        class="botao-confirmar"
+        (click)="confirmarInscricoes()"
+        [disabled]="rotasParaInscrever().length === 0 || salvando">
+        <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
+        {{ salvando ? 'Salvando...' : 'Confirmar Inscrições (' + rotasParaInscrever().length + ')' }}
+      </ion-button>
 
-        <div class="campo-endereco">
-          <label>
-            <ion-icon name="flag-outline"></ion-icon>
-            Endereço de Desembarque
-          </label>
-          <input 
-            type="text" 
-            [(ngModel)]="enderecoDesembarqueVolta" 
-            placeholder="Digite o endereço de desembarque"
-            class="endereco-input"
-          >
-        </div>
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="information-circle" color="primary"></ion-icon>
+            Informações Importantes
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ul class="info-lista">
+            <li>Você pode se inscrever em quantas rotas desejar</li>
+            <li>Selecione os dias da semana que pretende utilizar cada rota</li>
+            <li>No dia da viagem, confirme sua presença com antecedência</li>
+            <li>Após confirmar, você terá 8 minutos para embarcar</li>
+            <li>Use o cartão físico para autenticar seu embarque</li>
+          </ul>
+        </ion-card-content>
+      </ion-card>
 
-        <ion-button 
-          expand="block" 
-          class="botao-confirmar"
-          (click)="confirmarInscricaoVolta()"
-          [disabled]="!enderecoDesembarqueVolta"
-        >
-          <ion-icon name="checkmark-circle-outline" slot="start"></ion-icon>
-          Confirmar Inscrição
-        </ion-button>
-
-      </ion-card-content>
-    </ion-card>
-    <ion-card class="info-card">
-      <ion-card-header>
-        <ion-card-title>
-          <ion-icon name="information-circle" color="primary"></ion-icon>
-          Informações Importantes
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ul class="info-lista">
-          <li>Você pode se inscrever em quantas viagens desejar</li>
-          <li>No dia da viagem, confirme sua presença com antecedência</li>
-          <li>Após confirmar, você terá 8 minutos para embarcar</li>
-          <li>Use o cartão físico para autenticar seu embarque</li>
-          <li>Caso não embarque no tempo, você perderá a viagem</li>
-        </ul>
-      </ion-card-content>
-    </ion-card>
+    </ng-container>
 
   </div>
 
