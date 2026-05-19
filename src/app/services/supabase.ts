@@ -81,7 +81,7 @@ export class Supabase {
     }
   }
 
-  // Método de login
+
   async login(email: string, senha: string) {
     try {
       const { data, error } = await this.supabase.auth.signInWithPassword({
@@ -122,7 +122,6 @@ export class Supabase {
     }
   }
 
-  // Logout
   async logout() {
     try {
       const { error } = await this.supabase.auth.signOut();
@@ -133,4 +132,65 @@ export class Supabase {
       return { success: false, error };
     }
   }
+
+  async getRotas() {
+  try {
+    const { data, error } = await this.supabase
+      .from('rota')
+      .select('*')
+      .order('id');
+
+    if (error) throw error;
+    return { success: true, data };
+  } catch (error: any) {
+    console.error('Erro ao buscar rotas:', error);
+    return { success: false, error };
+  }
+}
+
+async getInscricoesDoPassageiro(usuarioId: number) {
+  try {
+    const { data, error } = await this.supabase
+      .from('passageiro_rota')
+      .select('rota_id, dias_viagem')
+      .eq('usuario_id', usuarioId);
+
+    if (error) throw error;
+    return { success: true, data };
+  } catch (error: any) {
+    console.error('Erro ao buscar inscrições:', error);
+    return { success: false, error };
+  }
+}
+
+async inscreverNasRotas(inscricoes: { usuario_id: number, rota_id: number, dias_viagem: string }[]) {
+  try {
+    const { data, error } = await this.supabase
+      .from('passageiro_rota')
+      .insert(inscricoes);
+
+    if (error) throw error;
+    return { success: true, data };
+  } catch (error: any) {
+    console.error('Erro ao inscrever nas rotas:', error);
+    return { success: false, error };
+  }
+}
+
+async removerInscricao(usuarioId: number, rotaId: number) {
+  try {
+    const { error } = await this.supabase
+      .from('passageiro_rota')
+      .delete()
+      .eq('usuario_id', usuarioId)
+      .eq('rota_id', rotaId);
+
+    if (error) throw error;
+    return { success: true };
+  } catch (error: any) {
+    console.error('Erro ao remover inscrição:', error);
+    return { success: false, error };
+  }
+}
+
 }
