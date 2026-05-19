@@ -41,59 +41,62 @@
     </ion-buttons>
   </ion-toolbar>
 
-  <!-- Viagens -->
-  <h2 class="secao-titulo">Minhas Viagens de Hoje</h2>
+  <div class="ion-padding">
 
-  <ion-card class="viagem-card">
-    <ion-card-content>
-      <div class="viagem-header">
-        <div class="viagem-rota">
-          <ion-icon name="bus-outline"></ion-icon>
-          <span class="rota-texto">Interior → São Paulo (Zona Oeste)</span>
-        </div>
-        <ion-badge class="badge-embarcado">
-          <ion-icon name="checkmark-circle-outline"></ion-icon>
-          Embarcado
-        </ion-badge>
-      </div>
-      <p class="motorista">Motorista: Roberto Carvalho</p>
-      <div class="viagem-info">
-        <span class="info-item">
-          <ion-icon name="time-outline"></ion-icon>
-          Partida: 06:00
-        </span>
-        <span class="info-item">
-          <ion-icon name="location-outline"></ion-icon>
-          Rua das Flores, 123 - Centro
-        </span>
-      </div>
-      <div class="viagem-status">
-        <ion-icon name="checkbox-outline"></ion-icon>
-        <span>Você está embarcado! Boa viagem!</span>
-      </div>
-    </ion-card-content>
-  </ion-card>
+    <h2 class="secao-titulo">Minhas Viagens de Hoje</h2>
 
-  <ion-card class="viagem-card">
-    <ion-card-content>
-      <div class="viagem-header">
-        <div class="viagem-rota">
-          <ion-icon name="bus-outline"></ion-icon>
-          <span class="rota-texto">São Paulo → Interior (Retorno)</span>
-        </div>
-      </div>
-      <p class="motorista">Motorista: Roberto Carvalho</p>
-      <div class="viagem-info">
-        <span class="info-item">
-          <ion-icon name="time-outline"></ion-icon>
-          Partida: 13:30
-        </span>
-        <span class="info-item">
-          <ion-icon name="location-outline"></ion-icon>
-          Rua das Flores, 123 - Centro
-        </span>
-      </div>
-    </ion-card-content>
-  </ion-card>
+    <!-- Skeleton loading -->
+    <ng-container *ngIf="carregando">
+      <ion-card *ngFor="let i of [1,2]" class="viagem-card">
+        <ion-card-content>
+          <ion-skeleton-text animated style="width: 70%; height: 16px; margin-bottom: 12px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 40%; height: 14px; margin-bottom: 8px;"></ion-skeleton-text>
+          <ion-skeleton-text animated style="width: 55%; height: 14px;"></ion-skeleton-text>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+
+    <!-- Sem viagens hoje -->
+    <ng-container *ngIf="!carregando && rotasInscritas.length === 0">
+      <ion-card class="viagem-card vazia">
+        <ion-card-content>
+          <div class="vazia-content">
+            <ion-icon name="bus-outline" class="vazia-icon"></ion-icon>
+            <p class="vazia-titulo">Nenhuma viagem hoje</p>
+            <p class="vazia-descricao">Você não tem rotas inscritas para {{ diaSemanaHoje }}.</p>
+            <ion-button fill="outline" routerLink="/cadastrarviagem" size="small">
+              <ion-icon name="add-outline" slot="start"></ion-icon>
+              Inscrever-se em rotas
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+
+    <!-- Rotas do dia -->
+    <ng-container *ngIf="!carregando && rotasInscritas.length > 0">
+      <ion-card
+        *ngFor="let rota of rotasInscritas"
+        class="viagem-card">
+        <ion-card-content>
+          <div class="viagem-header">
+            <div class="viagem-rota">
+              <ion-icon name="bus-outline"></ion-icon>
+              <span class="rota-texto">{{ rota.descricao }}</span>
+            </div>
+            <ion-badge class="badge-turno">{{ rota.turno }}</ion-badge>
+          </div>
+
+          <div class="viagem-info">
+            <span class="info-item">
+              <ion-icon name="calendar-outline"></ion-icon>
+              {{ rota.dias_viagem.split(';').join(' · ') }}
+            </span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+
+  </div>
 
 </ion-content>
